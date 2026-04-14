@@ -29,4 +29,10 @@ const nome = prompt('informe seu nome: ')
 console.log('Olá, ' + nome + '! Seja bem-vindo!')
 
 }
-nomear()
+function whilar (){
+let i = 0
+while (i < 10) {
+    console.log(i)
+    i++
+}
+}
