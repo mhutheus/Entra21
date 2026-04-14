@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Matrizes {
@@ -20,11 +19,14 @@ public class Matrizes {
         String jogador = "X";
 
         while (true) {
+        	
+        	System.out.println("");
 
             for (int i = 0; i < 3; i++) {
                 System.out.println(" " + tabuleiro[i][0] + " | " + tabuleiro[i][1] + " | " + tabuleiro[i][2]);
                 if (i < 2) System.out.println("---+---+---");
             }
+            System.out.println("");
 
             System.out.println("Jogador: " + jogador);
 
@@ -36,7 +38,7 @@ public class Matrizes {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
 
-                    if (tabuleiro[i][j].equals(antiga)) {
+                    if (tabuleiro[i][j].equals(antiga) && tabuleiro[i][j] != "X" && tabuleiro[i][j] != "O") {
                         tabuleiro[i][j] = jogador;
                         encontrou = true;
                     }
@@ -60,7 +62,7 @@ public class Matrizes {
             }
 
             if (verificarEmpate(tabuleiro)) {
-                System.out.println("\nDeu empate!");
+                System.out.println("Deu empate!");
 
                 for (int i = 0; i < 3; i++) {
                     System.out.println(" " + tabuleiro[i][0] + " | " + tabuleiro[i][1] + " | " + tabuleiro[i][2]);
@@ -70,7 +72,11 @@ public class Matrizes {
                 break;
             }
 
-            jogador = jogador.equals("X") ? "O" : "X";
+            if (jogador.equals("X")) {
+                jogador = "O";
+            } else {
+                jogador = "X";
+            }
         }
 
         sc.close();
@@ -100,6 +106,7 @@ public class Matrizes {
 
         return false;
     }
+
     static boolean verificarEmpate(String[][] t) {
 
         for (int i = 0; i < 3; i++) {
