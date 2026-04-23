@@ -1,0 +1,167 @@
+//exercicio1_2()
+//exercicio1_3()
+//exercicio1_5()
+//exercicio1_7()
+//exercicio1_11()
+//exercicio2_1()
+//exercicio2_16()
+exercicio2_18()
+
+function exercicio1_2(){
+    let nome = 'Matheus'
+
+     let idade = 17
+
+     let altura = 1.90
+
+     console.log ('meu nome é '+nome+' tenho '+idade+' anos e tenho '+altura+' de altura')
+}
+function exercicio1_3(){
+    let x = 10
+    let y = 50
+    console.log(x)
+    console.log(y)
+    console.log(x + y)
+}
+function exercicio1_5(){
+  const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question("Qual é o seu nome? ", (nome) => {
+
+  rl.question("Qual é a sua idade? ", (idade) => {
+
+    rl.question("Qual é a sua altura? ", (altura) => {
+
+      console.log(`Olá, ${nome}! Você tem ${idade} anos e ${altura} de altura.`);
+
+      rl.close();
+    });
+
+  });
+
+});
+}
+function exercicio1_7(){
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+rl.question("Digite um número: ", (numero) => {
+  rl.question("Digite outro número: ", (numero2) => {
+    console.log(`A soma dos números é: ${parseFloat(numero) + parseFloat(numero2)}`);
+
+    rl.close();
+
+});
+
+
+});
+}
+function exercicio1_11(){
+
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.question('Digite sua primeira nota: ', (nota1) => {
+    rl.question('Digite sua segunda nota: ', (nota2) => {
+      rl.question('Digite sua terceira nota: ', (nota3) => {
+        const media = (parseFloat(nota1) + parseFloat(nota2) + parseFloat(nota3)) / 3;
+        console.log(`A média das notas é: ${media.toFixed(2)}`);
+        rl.close();
+      });
+    });
+  });
+
+}
+function exercicio2_1(){
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.question('Digite um número: ', (numero) => {
+    if (numero === '0') {
+      console.log(numero + ' é um número neutro.');
+    } else if (parseFloat(numero) < 0) {
+      console.log(numero + ' é um número negativo.');
+    } else {
+      console.log(numero + ' é um número positivo.');
+    }
+    rl.close();
+  });
+}
+function exercicio2_16(){
+
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.question('Digite sua primeira nota: ', (nota1) => {
+    rl.question('Digite sua segunda nota: ', (nota2) => {
+      rl.question('Digite sua terceira nota: ', (nota3) => {
+        const media = (parseFloat(nota1) + parseFloat(nota2) + parseFloat(nota3)) / 3;
+        console.log(`A média das notas é: ${media.toFixed(2)}`);
+        if (media >= 7) {
+          console.log('Aprovado');
+          if (nota1 < 7 || nota2 < 7 || nota3 < 7) {
+            console.log('Recuperação');
+        
+          }
+        } 
+        if (media < 7) {
+          console.log('Reprovado');
+        }
+        rl.close();
+      });
+    });
+  });
+
+}
+function exercicio2_18(){
+
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+let x = 67
+function perguntar() {
+  rl.question("Digite um número: ", (numero) => {
+
+    numero = parseFloat(numero);
+
+    if (numero > x) {
+      console.log("O número secreto é menor que " + numero);
+      perguntar(); // chama de novo
+    } 
+    else if (numero < x) {
+      console.log("O número secreto é maior que " + numero);
+      perguntar(); // chama de novo
+    } 
+    else {
+      console.log("Parabéns! Você acertou o número secreto!");
+      rl.close(); // só fecha quando acerta
+    }
+  });
+}
+perguntar();
+}
+
