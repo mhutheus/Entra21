@@ -1,8 +1,8 @@
-
+package src;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Structures {
+public class structures {
 	
 	
 	public static void main(String[] args) {
