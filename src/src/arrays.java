@@ -16,7 +16,7 @@ public class arrays {
 		//exercicio3b();
 		//exercicio4();
 		//exercicio5a();
-		exercicio5b();
+		//exercicio5b();
 		//exercicio6a();
 		//exercicio6b();
 		
