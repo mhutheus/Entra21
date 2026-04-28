@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+     }
+     hr{
+   height: 2px; 
+   background-color:black;
+     }
+     .riscado {
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: black;
+     }
+
+</style>
+<body style="background-color: darkseagreen;">
+    <p style="text-align: center; font-size: 50px;">TO-DO LIST</p>
+    <hr>
+    <p style="font-size: 20px;">Digite sua tarefa:</p>
+    <input id="tarefa" type="text" style="height:50px; width:500px" placeholder="Ex: Limpar os banheiros" />
+    <button onclick="adicionarTarefa()" style="height: 30px;">Salvar</button>
+    
+    <hr>
+    <p style="font-size: 20px;">Tarefas pendentes:</p>
+    <ul id="pendentes"></ul>
+
+    <p style="font-size: 20px;">Concluídas:</p>
+    <ul id="concluidas"></ul>
+
+    <script>
+        function adicionarTarefa(){
+        let input = document.getElementById("tarefa")
+        let texto = input.value
+
+        if (texto=== ""){
+            alert("Digite uma tarefa!")
+            return
+        }
+        let listaPendentes = document.getElementById("pendentes")
+        let listaConcluidas = document.getElementById("concluidas")
+
+        let item = document.createElement("li")
+
+        let span = document.createElement("span")
+        span.textContent = texto
+
+        let botao = document.createElement("button")
+        botao.textContent = "✔"
+        botao.style.marginLeft = "10px"
+
+        botao.onclick = function () {
+            if (!span.classList.contains("riscado")){
+                span.classList.toggle("riscado")
+                botao.textContent = "↩"
+                listaConcluidas.appendChild(item)
+
+                if (!item.querySelector(".remover")) {
+            let remover = document.createElement("button")
+            remover.textContent = "X"
+            remover.style.marginLeft = "10px"
+            remover.classList.add("remover")
+
+            remover.onclick = function () {
+                item.remove()
+            }
+
+            item.appendChild(remover)
+        }
+            }
+                else{
+                    span.classList.remove("riscado")
+                    botao.textContent = "✔"
+                    listaPendentes.appendChild(item)
+                    let remover = item.querySelector(".remover")
+
+                    if (remover) {
+                     remover.remove()
+    }
+
+                    
+                }
+            }
+        
+
+        item.appendChild(span)
+        item.appendChild(botao)
+
+        listaPendentes.appendChild(item)
+
+        input.value = ""
+    }
+    </script>
+    <hr>
+    <p>Contatos</p>
+
+</body>
+</html>
