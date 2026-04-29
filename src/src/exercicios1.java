@@ -12,7 +12,8 @@ public class exercicios1 {
         //exercicio8a();
         //exercicio9a();
         //exercicicio9aextra();
-        exercicio10a();
+        //exercicio10a();
+        exercicio11a();
 
         //exercicio1b();
         //exercicio2b();
@@ -224,6 +225,19 @@ public class exercicios1 {
              System.out.println("Acesso negado");
          }
          entrada.close();
+
+    }
+    static void exercicio11a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o ano");
+        int ano = entrada.nextInt();
+        if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)){
+            System.out.println("O ano "+ano+" é bissexto");
+        }
+        else{
+            System.out.println("O ano "+ano+" não é bissexto");
+        }
+        entrada.close();
 
     }
 
