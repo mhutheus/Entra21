@@ -7,6 +7,12 @@ public class exercicios1 {
         //exercicio3a();
         //exercicio4a();
         //exercicio5a();
+        //exercicio6a();
+        //exercicio7a();
+        //exercicio8a();
+        //exercicio9a();
+        //exercicicio9aextra();
+        exercicio10a();
 
         //exercicio1b();
         //exercicio2b();
@@ -21,7 +27,11 @@ public class exercicios1 {
         //exercicio11b();
         //exercicio12b();
         //exercicio13b();
-        exercicio14b();
+        //exercicio14b();
+        //exercicio15b();
+        //exercicio16b();
+        //exercicio17b();
+        //exercicio18b();
 
     }
     //exercicio de if
@@ -39,7 +49,6 @@ public class exercicios1 {
             entrada.close();
 
     }
-
     static void exercicio2a(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite um número");
@@ -58,7 +67,6 @@ public class exercicios1 {
         entrada.close();
 
     }
-
     static void exercicio3a(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite um número");
@@ -72,8 +80,7 @@ public class exercicios1 {
                 System.out.println("O número é zero");
             }
             entrada.close();
-    }
-    
+    }  
     static void exercicio4a(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite sua nota");
@@ -91,7 +98,6 @@ public class exercicios1 {
         entrada.close();
 
     }
-
     static void exercicio5a(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite sua idade");
@@ -106,6 +112,118 @@ public class exercicios1 {
             System.out.println("Você pode votar");
         }
         entrada.close();
+
+    }
+    static void exercicio6a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite seu primeiro número");
+        float n1 = entrada.nextFloat();
+        System.out.println("Digite seu segundo número");
+        float n2 = entrada.nextFloat();
+        System.out.println("Digite seu terceiro número");
+        float n3 = entrada.nextFloat();
+        if(n1 > n2 && n1 > n3){
+            System.out.println("O maior número é "+n1);
+        }
+        else if(n2 > n1 && n2 > n3){
+            System.out.println("O maior número é "+n2);
+        }
+        else if(n3 > n1 && n3 > n2){
+            System.out.println("O maior número é "+n3);
+        }
+        else{
+            System.out.println("Os números são iguais");
+        }
+        entrada.close();
+    }
+    static void exercicio7a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite sua nota");
+        float x = entrada.nextFloat();
+        if (x < 0 || x > 10){
+            System.out.println("Nota inválida");}
+        else if(x >= 9){
+            System.out.println("Sua nota é excelente");}
+        else if(x >= 7){
+            System.out.println("Sua nota é boa");}
+        else if(x >= 5){
+            System.out.println("Sua nota é regular");}
+        else{
+            System.out.println("Sua nota é ruim");
+        }
+        entrada.close();
+    }
+    static void exercicio8a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o primeiro lado do triângulo");
+        float l1 = entrada.nextFloat();
+        System.out.println("Digite o segundo lado do triângulo");
+        float l2 = entrada.nextFloat();
+        System.out.println("Digite o terceiro lado do triângulo");
+        float l3 = entrada.nextFloat();
+        if ((l1 + l2)>l3 && (l1 + l3) > l2 && (l2 + l3) > l1){
+            System.out.println("Os lados formam um triângulo");}
+        else{
+            System.out.println("Os lados não formam um triângulo");
+        }
+        entrada.close();
+    }
+    static void exercicio9a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o primeiro lado do triângulo");
+        float l1 = entrada.nextFloat();
+        System.out.println("Digite o segundo lado do triângulo");
+        float l2 = entrada.nextFloat();
+        System.out.println("Digite o terceiro lado do triângulo");
+        float l3 = entrada.nextFloat();
+        if (l1==l2 && l1==l3){
+            System.out.println("O triângulo é equilátero");}
+        else if(l1==l2 || l1==l3 || l2==l3){
+            System.out.println("O triângulo é isósceles");}
+        else{
+            System.out.println("O triângulo é escaleno");
+        }
+        entrada.close();
+    }
+    static void exercicicio9aextra(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o primeiro lado do triângulo");
+        float l1 = entrada.nextFloat();
+        System.out.println("Digite o segundo lado do triângulo");
+        float l2 = entrada.nextFloat();
+        System.out.println("Digite o terceiro lado do triângulo");
+        float l3 = entrada.nextFloat();
+        int x = 0;
+        if ((l1 + l2)>l3 && (l1 + l3) > l2 && (l2 + l3) > l1){
+            System.out.println("Os lados formam um triângulo");
+            x++;
+        }
+        else{
+            System.out.println("Os lados não formam um triângulo");
+        }
+        if (x == 1){
+            if (l1==l2 && l1==l3){
+            System.out.println("O triângulo é equilátero");}
+        else if(l1==l2 || l1==l3 || l2==l3){
+            System.out.println("O triângulo é isósceles");}
+        else{
+            System.out.println("O triângulo é escaleno");
+        }
+        }
+        entrada.close();
+    }
+    static void exercicio10a(){
+         Scanner entrada = new Scanner(System.in);
+         String senha = "oi 1234";
+         System.out.println("Digite a senha");
+         String tentativa = entrada.nextLine();
+         if (tentativa.equals(senha)){
+             System.out.println("Acesso permitido");
+         }
+         else{
+             System.out.println("Acesso negado");
+         }
+         entrada.close();
 
     }
 
@@ -215,6 +333,7 @@ public class exercicios1 {
         System.out.println("Quantos anos você tem?");
         int idade = entrada.nextInt();
         System.out.println("Olá "+nome+", voce tem "+idade+" anos!");
+        entrada.close();
 
     }
     static void exercicio14b(){
@@ -224,6 +343,58 @@ public class exercicios1 {
         System.out.println("Digite outro número");
         float y = entrada.nextInt();
         float so = (x+y);
-        float su = 
+        float su = (x-y);
+        float mu = (x*y);
+        float di = (x/y);
+        System.out.println("A soma dos números é "+so);
+        System.out.println("A subtração dos números é "+su);
+        System.out.println("A multiplicação dos números é "+mu);
+        System.out.println("A divisão dos números é "+di);
+        entrada.close();
     }
+    static void exercicio15b(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite a temperatura em Celsius");
+        float c = entrada.nextFloat();
+        float f = (c*9/5)+32;
+        System.out.println("A temperatura em Fahrenheit é "+f);
+        entrada.close();
+    }
+    static void exercicio16b(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite suas horas trabalhadas");
+        float h = entrada.nextFloat();
+        System.out.println("Digite o valor da sua hora");
+        float v = entrada.nextFloat();
+        float s = h * v;
+        System.out.println("Seu salário é de R$ " + s);
+        entrada.close();
+    }
+    static void exercicio17b(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite seu nome:");
+        String nome = entrada.next();
+        System.out.println("Digite seu 1º número:");
+        float n1= entrada.nextFloat();
+        System.out.println("Digite seu 2º número:");
+        float n2= entrada.nextFloat();
+        System.out.println("Digite seu 3º número:");
+        float n3= entrada.nextFloat();
+        float m= (n1+n2+n3)/3;
+        System.out.println("Olá "+nome+", a média dos seus números é "+m);
+        entrada.close();
+    }
+    static void exercicio18b(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o nome do produto:");
+        String nome = entrada.next();
+        System.out.println("Digite o valor do produto:");
+        float p = entrada.nextFloat();
+        System.out.println("Digite a quantidade do produto:");
+        float q = entrada.nextFloat();
+        float total = p * q;
+        System.out.println("O total do produto " + nome + " é R$ " + total);
+        entrada.close();
+    }
+        
 }
