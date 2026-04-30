@@ -13,7 +13,13 @@ public class exercicios1 {
         //exercicio9a();
         //exercicicio9aextra();
         //exercicio10a();
-        exercicio11a();
+        //exercicio11a();
+        //exercicio12a();
+        //exercicio13a();
+        //exercicio14a();
+        //exercicio15a();
+        //exercicio16a();
+        exercicio17a();
 
         //exercicio1b();
         //exercicio2b();
@@ -240,6 +246,126 @@ public class exercicios1 {
         entrada.close();
 
     }
+    static void exercicio12a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite seu primeiro número");
+        float n1 = entrada.nextFloat();
+        System.out.println("Digite seu segundo número");
+        float n2 = entrada.nextFloat();
+        System.out.println("Digite seu sinal de operação (+, -, *, /)");
+        String sinal = entrada.next();
+        int x = 0;
+        float r = 0;
+        if(sinal.equals("+")){
+            r = (n1+n2);
+            x++;
+        }
+        else if(sinal.equals("-")){
+            r = (n1-n2);
+            x++;
+        }
+        else if(sinal.equals("*")){
+            r = (n1*n2);
+            x++;
+        }
+        else if(sinal.equals("/")){
+            r = (n1/n2);
+            x++;
+        }
+        else{
+            System.out.println("Sinal inválido!");
+        }
+        if(x==1){
+            System.out.println("O resultado da operação é " + r );
+        }
+        entrada.close();
+    }
+    static void exercicio13a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite seu salário:");
+        float s = entrada.nextFloat();
+        if(s<0){
+            System.out.println("Salário inválido");
+        }
+        else if(s<=5000 && s>=0){
+            System.out.println("Você não pagará imposto de renda!");
+        }
+        else if(s<=10000){
+            System.out.println("Você pagará 10% em imposto de renda ("+(s*0.1)+") e seu salário será de: "+(s*0.9));
+        }
+        else if(s<=50000){
+            System.out.println("Você pagará 25% em imposto de renda ("+(s*0.25)+") e seu salário será de: "+(s*0.75));
+        }
+        else{
+            System.out.println("Você pagará 50% em imposto de renda ("+(s*0.5)+") e seu salário será de: "+(s*0.5));
+        }
+        entrada.close();
+    }
+    static void exercicio14a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o preço do produto:");
+        float p = entrada.nextFloat();
+        if(p<0){
+            System.out.println("Preço inválido");
+        }
+        else if(p<=100){
+            System.out.println("Sem desconto");
+        }
+        else if(p<=500){
+            System.out.println("10% de desconto ("+(p*0.1)+"), com o preço final de: "+(p*0.9));
+        }
+        else{
+            System.out.println("20% de desconto ("+(p*0.2)+"), com o preço final de: "+(p*0.8));
+        }
+        entrada.close();
+    }
+    static void exercicio15a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite sua idade:");
+        int i = entrada.nextInt();
+        if(i<0 || i>120){
+            System.out.println("Idade inválida");
+        }
+        else if(i<=12){
+            System.out.println("Você é uma criança");
+        }
+        else if(i<=17){
+            System.out.println("Você é um adolecente");
+        }
+        else if(i<=59){
+            System.out.println("Você é um adulto");
+        }
+        else{
+            System.out.println("Você é um idoso");
+        }
+        entrada.close();
+    }
+    static void exercicio16a(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite sua primeira nota:");
+        float n1 = entrada.nextFloat();
+        System.out.println("Digite sua segunda nota:");
+        float n2 = entrada.nextFloat();
+        System.out.println("Digite sua terceira nota:");
+        float n3 = entrada.nextFloat();
+        float m = ((n1+n2+n3)/3);
+        if((n1<6||n2<6||n3<6) && m>=6 && m<=10){
+            System.out.println("Você está aprovado mas de recuperação, com a média: "+m);
+        }
+        else if(m<6 && m>0 && m<10){
+            System.out.println("Você está reprovado com média: "+m);
+        }
+        else if(m>=6 && m<=10){
+            System.out.println("Você está aprovado com média: "+m);
+        }
+        else{
+            System.out.println("Alguma nota inválida");
+        }
+        entrada.close();
+    }
+    static void exercicio17a(){
+
+    }
 
     //a partir daqui são os exercícios básicos
 
@@ -258,7 +384,7 @@ public class exercicios1 {
     static void exercicio3b(){
         int x = 5;
         int y = 4;
-        int soma = (5+4);
+        int soma = (x+y);
         System.out.println(soma);
 
     }
@@ -339,6 +465,7 @@ public class exercicios1 {
         float S = entrada.nextFloat();
         float aumento = (S * 115/100);
         System.out.println("Com o aumento, seu salário é de "+aumento);
+        entrada.close();
     }
     static void exercicio13b(){
         Scanner entrada = new Scanner(System.in);
