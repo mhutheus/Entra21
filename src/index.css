@@ -84,7 +84,10 @@ subheader {
     height: 20px;
 }
 footer{
+   background-color: lightblue;
+    padding: 1px;
+    font-size: 40px;
     text-align: center;
-    width: 100%;
-    background-color: lightblue;
+    color: rgb(0, 38, 95);
+    padding: 20px;
 }
