@@ -47,7 +47,7 @@ public class calculadoraDeMedia {
                 System.out.println("Inválido!");
             }
         }
-        if (p == 2) {
+        else if (p == 2) {
             System.out.println("Qual a nota necessária para passar?");
             float passar = entrada.nextFloat();
             System.out.println("Sua média é aritimética (1) ou 70%-30% (2)?");
@@ -68,7 +68,7 @@ public class calculadoraDeMedia {
                 System.out.println(
                         "Para passar você precisa de " + falta + " pontos de nota total ou " + nota + " por prova.");
             }
-            if (tipo == 2) {
+            else if (tipo == 2) {
                 System.out.println("Quantas notas 70% você já tem?");
                 int tem1 = entrada.nextInt();
                 System.out.println("Qual o total de notas 70%?");
@@ -77,20 +77,26 @@ public class calculadoraDeMedia {
                 int tem2 = entrada.nextInt();
                 System.out.println("Qual o total de notas 30%?");
                 int tudo2 = entrada.nextInt();
-                float total1 = 0f;
-                float total2 = 0f;
+                float total7 = 0f;
+                float total3 = 0f;
                 for (int i = 0; i < tem1; i++) {
                     System.out.println("Digite sua " + (i + 1) + "ª nota 70%");
                     float n = entrada.nextFloat();
-                    total1 = (total1 + n);
+                    total7 = (total7 + n);
                 }
                 for (int i = 0; i < tem2; i++) {
                     System.out.println("Digite sua " + (i + 1) + "ª nota 30%");
                     float n = entrada.nextFloat();
-                    total2 = (total2 + n);
+                    total3 = (total3 + n);
                 }
 
             }
+            else{
+            System.out.println("Inválido!");
+        }
+        }
+        else{
+            System.out.println("Inválido!");
         }
     }
 }
