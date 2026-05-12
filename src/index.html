@@ -9,57 +9,80 @@
 </head>
 
 <body>
-    <header>
-        <h1>Aula de HTML</h1>
-    </header>
+    
+        <header>
+            <h1>Aula de HTML</h1>
+        </header>
+        <div class="container">
 
-    <div class="carousel">
+        <div class="carousel">
 
-        <button onclick="voltar()"><img src="https://img.freepik.com/vetores-premium/icone-de-seta_701361-364.jpg" class="girar"></button>
+            <button onclick="voltar()"><img src="https://img.freepik.com/vetores-premium/icone-de-seta_701361-364.jpg"
+                    class="girar"></button>
 
-        <div class="carousel-wrapper">
+            <div class="carousel-wrapper">
 
-            <div class="carousel-track" id="track">
+                <div class="carousel-track" id="track">
 
-                <div class="slide">
-                    <subheader>
-                        <p style="color:lightblue">Conteúdo</p>
-                    </subheader>
-                    <div class="grid">
+                    <div class="slide">
+                        <subheader>
+                            <p style="color:lightblue">Conteúdo</p>
+                        </subheader>
+                        <div class="grid">
 
-                        <div class="card"><a href="./conteúdo/cabecalhos.html">cabeçalhos</a> </div>
-                        <div class="card"><a href="./conteúdo/inputs.html">inputs</a></div>
-                        <div class="card"><a href="./conteúdo/indexx.html">index</a></div>
-                        <div class="card"><a href="./conteúdo/divs.html">divs</a></div>
-                        <div class="card"><a href="./conteúdo/pagina.html">cards</a></div>
-                        <dic class="card"><a href="./conteúdo/menu/menu.html">iframe</a></dic>
-                        <dic class="card"><a href="./conteúdo/dropdown.html">dropdown</a></dic>
+                            <div class="card"><a href="./conteúdo/cabecalhos.html" target="frame">cabeçalhos</a> </div>
+                            <div class="card"><a href="./conteúdo/inputs.html" target="frame">inputs</a></div>
+                            <div class="card"><a href="./conteúdo/indexx.html" target="frame">index</a></div>
+                            <div class="card"><a href="./conteúdo/divs.html" target="frame">divs</a></div>
+                            <div class="card"><a href="./conteúdo/pagina.html" target="frame">cards</a></div>
+                            <div class="card"><a href="./conteúdo/menu/menu.html" target="frame">iframe</a></div>
+                            <div class="card"><a href="./conteúdo/dropdown.html" target="frame">dropdown</a></div>
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="slide">
-                    <subheader>
-                        <p style="color:lightblue">Meus sites</p>
-                    </subheader>
-                    <div class="grid">
+                    <div class="slide">
+                        <subheader>
+                            <p style="color:lightblue">JavaScript</p>
+                        </subheader>
+                        <div class="grid">
 
-                        <div class="card"><a href="./meus sites/gatos.html">gatos</a></div>
-                        <div class="card"><a href="./meus sites/lista.html">lista</a></div>
+                            <div class="card"><a href="./conteúdo/javascript/index.html" target="frame">botões</a></div>
+                            <div class="card"><a href="./conteúdo/javascript/atributos.html"
+                                    target="frame">atributos</a></div>
 
+                        </div>
                     </div>
-                </div>
 
+                    <div class="slide">
+                        <subheader>
+                            <p style="color:lightblue">Meus sites</p>
+                        </subheader>
+                        <div class="grid">
+
+                            <div class="card"><a href="./meus sites/gatos.html" target="frame">gatos</a></div>
+                            <div class="card"><a href="./meus sites/lista.html" target="frame">lista</a></div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            <button onclick="avancar()"><img src="https://img.freepik.com/vetores-premium/icone-de-seta_701361-364.jpg"
+                    class="seta"></button>
+
         </div>
 
-        <button onclick="avancar()"><img src="https://img.freepik.com/vetores-premium/icone-de-seta_701361-364.jpg" class="seta"></button>
+        <main>
+            <iframe src="" name="frame"></iframe>
+        </main>
 
-    </div>
+        <footer>
+            <p>Feito por Matheus Novaski de Souza</p>
+        </footer>
+        </div>
 
-    <footer>
-        <p>Feito por Matheus Novaski de Souza</p>
-    </footer>
     <script>
         let index = 0;
 
@@ -69,10 +92,10 @@
         }
 
         function avancar() {
-            if (index < 1) {
+            if (index < 2) {
                 index++;
                 atualizar();
-            } 
+            }
         }
 
         function voltar() {
