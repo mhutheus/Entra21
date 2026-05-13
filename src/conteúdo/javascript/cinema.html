@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cinema.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Cinema</h1>
+
+    <div class="tela">
+        <p>TELA</p>
+    </div>
+
+    <div class="cinema">
+        <div class="linhas">
+            <p>A</p>
+            <p>B</p>
+            <p>C</p>
+            <p>D</p>
+            <p>E</p>
+            <p>F</p>
+            <p>G</p>
+        </div>
+        <div class="assentos">
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="assento" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="assento" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="ocupado" onclick="ocupar(this)">6</button>
+                <button class="ocupado" onclick="ocupar(this)">7</button>
+                <button class="ocupado" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="ocupado" onclick="ocupar(this)">2</button>
+                <button class="ocupado" onclick="ocupar(this)">3</button>
+                <button class="assento" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="assento" onclick="ocupar(this)">6</button>
+                <button class="assento" onclick="ocupar(this)">7</button>
+                <button class="assento" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="assento" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="assento" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="ocupado" onclick="ocupar(this)">6</button>
+                <button class="ocupado" onclick="ocupar(this)">7</button>
+                <button class="ocupado" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="assento" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="ocupado" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="assento" onclick="ocupar(this)">6</button>
+                <button class="assento" onclick="ocupar(this)">7</button>
+                <button class="assento" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="ocupado" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="assento" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="assento" onclick="ocupar(this)">6</button>
+                <button class="assento" onclick="ocupar(this)">7</button>
+                <button class="ocupado" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="ocupado" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="assento" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="assento" onclick="ocupar(this)">6</button>
+                <button class="assento" onclick="ocupar(this)">7</button>
+                <button class="assento" onclick="ocupar(this)">8</button>
+            </div>
+            <div class="fileira">
+                <button class="assento" onclick="ocupar(this)">1</button>
+                <button class="assento" onclick="ocupar(this)">2</button>
+                <button class="assento" onclick="ocupar(this)">3</button>
+                <button class="ocupado" onclick="ocupar(this)">4</button>
+                <button class="assento" onclick="ocupar(this)">5</button>
+                <button class="assento" onclick="ocupar(this)">6</button>
+                <button class="assento" onclick="ocupar(this)">7</button>
+                <button class="assento" onclick="ocupar(this)">8</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="selecionados">
+        <h2>Assentos Selecionados</h2>
+        <p id="lista-assentos">Nenhum assento selecionado</p>
+    </div>
+    <script>
+        function ocupar(botao) {
+            if (botao.classList.contains('assento')) {
+                botao.classList.replace('assento', 'escolhido');
+            }
+            else if (botao.classList.contains('ocupado')) {
+
+            }
+            else if (botao.classList.contains('escolhido')) {
+                botao.classList.replace('escolhido', 'assento');
+            }
+            atualizarAssentos();
+            
+            function atualizarAssentos() {
+                const escolhidos = document.querySelectorAll('.escolhido');
+                const lista = document.getElementById('lista-assentos');
+
+                let assentos = [];
+
+                escolhidos.forEach((assento) => {
+                    const fileira = assento.parentElement;
+                    const numeroFileira = Array.from(fileira.parentElement.children).indexOf(fileira);
+
+                    const letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+                    assentos.push(letras[numeroFileira] + assento.innerText);
+                });
+
+                if (assentos.length > 0) {
+                    lista.innerText = assentos.join(', ');
+                } else {
+                    lista.innerText = 'Nenhum assento selecionado';
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
