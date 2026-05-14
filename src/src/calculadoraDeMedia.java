@@ -79,6 +79,8 @@ public class calculadoraDeMedia {
                 int tudo2 = entrada.nextInt();
                 float total7 = 0f;
                 float total3 = 0f;
+                float nota7;
+                float nota3;
                 for (int i = 0; i < tem1; i++) {
                     System.out.println("Digite sua " + (i + 1) + "ª nota 70%");
                     float n = entrada.nextFloat();
@@ -89,6 +91,15 @@ public class calculadoraDeMedia {
                     float n = entrada.nextFloat();
                     total3 = (total3 + n);
                 }
+                total7 = ((passar * tudo1) - total7);
+                total3 = ((passar * tudo2) - total3);
+
+                nota7 = (total7 / (tudo1 - tem1));
+                nota3 = (total3 / (tudo2 - tem2));
+
+                System.out.println("Você precisa de " + nota7 + " por nota de valor 70% e "+nota3+" por nota de valor 30%");
+                System.out.println("OU");
+
 
             }
             else{
