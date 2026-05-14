@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cadastro.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cadastro">
+        <h1>Cadastro de Clientes</h1>
+
+        <div class="coletar">
+            <p>Nome</p>
+            <input type="text" id="nome" PlaceHolder="Ex: Ana" />
+            <p>E-mail</p>
+            <input type="text" id="eMail" PlaceHolder="Ex: ana@gmail.com" />
+            <p>Telefone</p>
+            <input type="text" id="numero" PlaceHolder="Ex: (47) 99122-3344" />
+            <p></p>
+            <button onclick="cadastrar()">Salvar</button>
+        </div>
+
+        <h3>Lista de Clientes</h3>
+
+        <table>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+
+            <tbody id="tabela">
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
