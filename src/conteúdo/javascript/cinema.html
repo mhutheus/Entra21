@@ -103,19 +103,23 @@
         <h2>Assentos Selecionados</h2>
         <p id="lista-assentos">Nenhum assento selecionado</p>
     </div>
+    <div class="preco">
+        <h2>Preço total</h2>
+        <p id="precoTotal"> R$0.00 </p>
+    </div>
     <script>
         function ocupar(botao) {
             if (botao.classList.contains('assento')) {
                 botao.classList.replace('assento', 'escolhido');
             }
             else if (botao.classList.contains('ocupado')) {
-
+                alert("Assento ocupado!")
             }
             else if (botao.classList.contains('escolhido')) {
                 botao.classList.replace('escolhido', 'assento');
             }
             atualizarAssentos();
-            
+
             function atualizarAssentos() {
                 const escolhidos = document.querySelectorAll('.escolhido');
                 const lista = document.getElementById('lista-assentos');
@@ -136,6 +140,17 @@
                 } else {
                     lista.innerText = 'Nenhum assento selecionado';
                 }
+            }
+            atualizarPreco();
+
+            function atualizarPreco() {
+                const preco = document.getElementById('precoTotal');
+
+                const escolhidos = document.querySelectorAll('.escolhido');
+
+                let total = escolhidos.length * 28;
+
+                preco.innerHTML = 'R$ ' + total;
             }
         }
 

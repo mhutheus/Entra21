@@ -101,3 +101,12 @@ button{
 .selecionados h2 {
     margin-bottom: 10px;
 }
+.preco{
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.preco h2 {
+    margin-bottom: 10px;
+}
