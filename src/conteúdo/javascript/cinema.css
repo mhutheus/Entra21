@@ -1,97 +1,114 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-body{
-    background:midnightblue;
-    font-family:Arial, Helvetica, sans-serif;
-    color:white;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:30px;
-}
-.cinema{
-    display:flex;
-    gap:40px;
-    align-items:flex-start;
-    padding-right:60px;
-}
-.tela{
-    width: 50%;
-    height:auto;
-    background:white;
-    margin:40px 0;
-    border-radius:20px;
-    box-shadow:0 0 10px white;
-    color:midnightblue;
-    text-align: center;
-}
-.tela p{
-    font-size:20px;
-    font-weight:bold;
-}
-.assento{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:none;
-    cursor:pointer;
-    transition:0.3s;
-    background-color: white;
-}
-.assentos{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.linhas{
-    display:flex;
-    flex-direction:column;
-    gap:24.5px;
-    font-size:22px;
-    font-weight:bold;
-    margin-top:5px;
+body {
+    background: midnightblue;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    padding: 30px;
 }
-.fileira{
-    display:flex;
-    gap:12px;
-    justify-content:center;
+
+.cinema {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding-right: 60px;
 }
-.assento:hover{
-    transform:scale(1.3)
+
+.tela {
+    width: 50%;
+    height: auto;
+    background: white;
+    margin: 40px 0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px white;
+    color: midnightblue;
+    text-align: center;
 }
-.ocupado{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:none;
-    cursor:pointer;
-    transition:0.3s;
+
+.tela p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.assento {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: white;
+}
+
+.assentos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.linhas {
+    display: flex;
+    flex-direction: column;
+    gap: 24.5px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 5px;
+    padding-left: 390px;
+}
+
+.fileira {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.assento:hover {
+    transform: scale(1.3)
+}
+
+.ocupado {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
     background-color: gray;
 }
-.escolhido{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:none;
-    cursor:pointer;
-    transition:0.3s;
+
+.escolhido {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
     background-color: green;
 }
-.escolhido:hover{
-    transform:scale(1.3)
+
+.escolhido:hover {
+    transform: scale(1.3)
 }
-button{
-    font-size:15px;
-    font-weight:bold;
+
+button {
+    font-size: 15px;
+    font-weight: bold;
 }
+
 #lista-assentos {
     font-size: 20px;
     font-weight: bold;
 }
+
 .selecionados {
     margin-top: 30px;
     text-align: center;
@@ -101,12 +118,34 @@ button{
 .selecionados h2 {
     margin-bottom: 10px;
 }
-.preco{
+
+.preco {
     margin-top: 30px;
     text-align: center;
     color: white;
     font-weight: bold;
 }
+
 .preco h2 {
     margin-bottom: 10px;
+}
+
+.card img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card {
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    color:midnightblue;
+    font-weight: bold;
 }
