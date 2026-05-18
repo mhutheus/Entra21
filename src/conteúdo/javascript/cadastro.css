@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(245, 234, 255);
+}
+
+.cadastro {
+    gap: 40px;
+    text-align: center;
+    padding-right: 60px;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+table {
+    width: 100%;
+
+}
+
+th {
+    background: #910dfd;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 7px;
+    border: 2px solid #430153;
+
+}
+
+td {
+    padding: 12px;
+    border: 2px solid #430153;
+    border-radius: 7px;
+    background-color: rgb(245, 234, 255);
+}
+
+.tabela {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 0 0px 10px rgb(176, 143, 207);
+}
+
+.tabela h3 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.coletar {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    background-color: white;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0px 10px rgb(176, 143, 207);
+}
+
+button {
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 7px;
+    margin-top: 5px;
+    background: #910dfd;
+    border: 2px solid #430153;
+    color: white;
+    cursor: pointer;
+    transition: border-radius 0.3s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #430153;
+    border: 2px solid #430153;
+    border-radius: 4px;
+}
+
+input {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    font-size: 15px;
+    height: 40px;
+    width: 90%;
+}

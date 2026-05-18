@@ -14,28 +14,57 @@
 
         <div class="coletar">
             <p>Nome</p>
-            <input type="text" id="nome" PlaceHolder="Ex: Ana" />
+            <input type="text" id="nome"/>
             <p>E-mail</p>
-            <input type="text" id="eMail" PlaceHolder="Ex: ana@gmail.com" />
+            <input type="text" id="eMail">
             <p>Telefone</p>
-            <input type="text" id="numero" PlaceHolder="Ex: (47) 99122-3344" />
+            <input type="text" id="numero">
             <p></p>
             <button onclick="cadastrar()">Salvar</button>
         </div>
+        <div class="tabela">
+            <h3>Lista de Clientes</h3>
 
-        <h3>Lista de Clientes</h3>
+            <table>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
 
-        <table>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
+                <tbody id="tabela">
 
-            <tbody id="tabela">
+                </tbody>
+            </table>
 
-            </tbody>
-        </table>
-
+        </div>
     </div>
+    <script>
+        function cadastrar() {
+            let nome = document.getElementById('nome').value
+            let eMail = document.getElementById('eMail').value
+            let numero = document.getElementById('numero').value
+
+            if (nome == '' || eMail == '' || numero == '') {
+                alert('Preencha todos os campos!')
+                return
+            }
+            if(/\d/.test(nome)){
+                alert('Nome inválido!')
+                return
+                
+            }
+            if(!eMail.includes('@')){
+                alert('Email inválido!')
+                return
+            }
+
+            let tabela = document.getElementById('tabela')
+            tabela.innerHTML += `
+        <td>${nome}</td>
+        <td>${eMail}</td>
+        <td>${numero}</td>
+        `
+        }
+    </script>
 </body>
 
 </html>
