@@ -14,7 +14,7 @@
 
         <div class="coletar">
             <p>Nome</p>
-            <input type="text" id="nome"/>
+            <input type="text" id="nome" />
             <p>E-mail</p>
             <input type="text" id="eMail">
             <p>Telefone</p>
@@ -47,23 +47,45 @@
                 alert('Preencha todos os campos!')
                 return
             }
-            if(/\d/.test(nome)){
+            if (/\d/.test(nome)) {
                 alert('Nome inválido!')
                 return
-                
+
             }
-            if(!eMail.includes('@')){
+            if (!eMail.includes('@')) {
                 alert('Email inválido!')
                 return
             }
-
+            if (!/^\d+$/.test(numero)) {
+                alert('Número inválido!')
+                return
+            }
             let tabela = document.getElementById('tabela')
             tabela.innerHTML += `
-        <td>${nome}</td>
-        <td>${eMail}</td>
-        <td>${numero}</td>
+        <td class="copiavel">${nome}</td>
+        <td class="copiavel">${eMail}</td>
+        <td class="copiavel">${numero}</td>
         `
         }
+        
+            tabela.addEventListener("click", function (event) {
+                if (event.target.tagName === "TD" && event.target.classList.contains("copiavel")) {
+                    const textoParaCopiar = event.target.innerText;
+
+                    navigator.clipboard.writeText(textoParaCopiar)
+                        .then(() => {
+                            const textoOriginal = event.target.innerText;
+                            event.target.innerText = "Copiado! ✓";
+
+                            setTimeout(() => {
+                                event.target.innerText = textoOriginal;
+                            }, 450);
+                        })
+                        .catch(err => {
+                            alert("Erro ao copiar texto: ", err);
+                        });
+                }
+            });
     </script>
 </body>
 

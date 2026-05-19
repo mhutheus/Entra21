@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cadastro.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cadastro">
+        <h1>Cadastro de Clientes</h1>
+
+        <form action="tabela.html" method="GET">
+
+            <div class="coletar">
+                <p>Nome</p>
+                <input type="text" id="nome" name="nome" />
+                <p>E-mail</p>
+                <input type="text" id="eMail" name="eMail">
+                <p>Telefone</p>
+                <input type="text" id="numero" name="numero">
+                <br><br>
+                <button type="submit">Salvar</button>
+            </div>
+            <br>
+            <a href="tabela.html">Ir para a tabela</a>
+            <br><br><br>
+            <a href="./menu.html">Voltar ao menu</a>
+
+        </form>
+
+
+
+    </div>
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('eMail').value;
+            const numero = document.getElementById('numero').value;
+
+            const novoCliente = { nome, email, numero };
+
+            let listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+            listaClientes.push(novoCliente);
+
+            localStorage.setItem('clientes', JSON.stringify(listaClientes));
+
+        });
+    </script>
+
+</body>
+
+</html>

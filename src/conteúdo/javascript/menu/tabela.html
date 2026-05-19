@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./cadastro.css">
+</head>
+
+<body>
+    <div class="cadastro">
+        <h1>Lista de Clientes</h1>
+        <div class="tabela">
+            <table>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+
+                <tbody id="tabela">
+
+                </tbody>
+            </table>
+            <br><br>
+            <div class="botoes">
+                <button id="btnLimpar">Limpar Todos os Clientes</button>
+            </div>
+        </div>
+        <br>
+        <a href="cadastroStorage.html">Ir para o cadastro</a>
+        <br><br><br>
+        <a href="./menu.html">Voltar ao menu</a>
+    </div>
+
+    <script>
+        const listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+        const tabela = document.getElementById("tabela");
+
+        listaClientes.forEach(cliente => {
+            tabela.innerHTML += `
+                <tr>
+                    <td class="copiavel">${cliente.nome}</td>
+                    <td class="copiavel">${cliente.email}</td>
+                    <td class="copiavel">${cliente.numero}</td>
+                </tr>
+            `;
+
+        });
+
+        tabela.addEventListener("click", function (event) {
+            if (event.target.tagName === "TD" && event.target.classList.contains("copiavel")) {
+                const textoParaCopiar = event.target.innerText;
+
+                navigator.clipboard.writeText(textoParaCopiar)
+                    .then(() => {
+                        const textoOriginal = event.target.innerText;
+                        event.target.innerText = "Copiado! ✓";
+
+                        setTimeout(() => {
+                            event.target.innerText = textoOriginal;
+                        }, 450);
+                    })
+                    .catch(err => {
+                        alert("Erro ao copiar texto: ", err);
+                    });
+            }
+        });
+        const btnLimpar = document.getElementById("btnLimpar");
+
+        btnLimpar.addEventListener("click", function () {
+            localStorage.removeItem("clientes");
+            window.location.reload();
+        }
+        );
+
+    </script>
+
+</body>
+
+</html>
