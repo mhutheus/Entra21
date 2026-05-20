@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(245, 234, 255);
+}
+
+.cadastro1 {
+    gap: 40px;
+    text-align: center;
+    padding-right: 60px;
+    margin-top: 50px;
+}
+
+.cadastro2 {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.coletar {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    background-color: white;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0px 10px rgb(176, 143, 207);
+}
+
+button {
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 7px;
+    margin-top: 5px;
+    background: #910dfd;
+    border: 2px solid #430153;
+    color: white;
+    cursor: pointer;
+    transition: border-radius 0.3s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #430153;
+    border: 2px solid #430153;
+    border-radius: 4px;
+}
+
+input {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    font-size: 15px;
+    height: 40px;
+    width: 90%;
+}
+
+a {
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 7px;
+    margin-top: 5px;
+    background: #910dfd;
+    border: 2px solid #430153;
+    color: white;
+    cursor: pointer;
+    transition: border-radius 0.3s, background-color 0.3s;
+    text-decoration: none;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+a:hover {
+    background-color: #430153;
+    border: 2px solid #430153;
+    border-radius: 4px;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.botoesMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    background-color: white;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0px 10px rgb(176, 143, 207);
+}
+
+.menu {
+    gap: 40px;
+    text-align: center;
+    padding-right: 60px;
+    margin-top: 50px;
+    width: 30%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    min-height: 220px;
+    height: auto;
+}
+
+.card {
+    width: 300px;
+    min-height: 220px;
+    height: auto;
+    padding: 20px;
+    border-radius: 18px;
+
+    background-color: rgb(234, 218, 248);
+
+    border: 2px solid #d5b6f7;
+
+    box-shadow: 0 8px 20px rgba(145, 13, 253, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 18px 30px rgba(67, 1, 83, 0.25);
+    background-color: rgb(226, 197, 253);
+}
+
+.card h2 {
+    width: 100%;
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    hyphens: auto;
+}
+
+.card h2,
+.informação {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.copiavel {
+    cursor: pointer;
+}
+
+.titulo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #7b4d91;
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.informação {
+    font-size: 17px;
+    color: #2f023b;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    transition: background-color 0.3s ease;
+    word-break: break-word;
+    position: relative;
+}
+
+.informação:hover {
+    background-color: #ffffff;
+}
+
+.deletar {
+    border: none;
+    border-radius: 50%;
+    background-color: #ff4d6d;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 38px;
+    transition:
+        transform 0.2s,
+        background-color 0.3s,
+        border-radius 0.3s;
+}
+
+.deletar:hover {
+    background-color: #d90429;
+    transform: scale(1.1);
+    border-radius: 30%;
+}
+
+input.erro {
+    border: 2px solid #ff3b5c;
+    background-color: #ffe5ea;
+}
+
+input.sucesso {
+    border: 2px solid #31c76a;
+    background-color: #e8fff1;
+}
+
+#mensagem {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 20px;
+}
+
+.erroMensagem {
+    color: #d90429;
+}
+
+.sucessoMensagem {
+    color: #1b8f4b;
+}
+
+.editar {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: #910dfd;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.editar:hover {
+    background-color: #430153;
+    transform: scale(1.1);
+}
+.tituloh{
+    width: 100%;
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    hyphens: auto;
+}

@@ -40,13 +40,22 @@
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('eMail').value;
-            const numero = document.getElementById('numero').value;
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('eMail').value.trim();
+            const numero = document.getElementById('numero').value.trim();
 
             const novoCliente = { nome, email, numero };
 
             let listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+            const clienteExistente = listaClientes.find(cliente =>
+                cliente.email === email || cliente.numero === numero
+            );
+
+            if (clienteExistente) {
+                alert("Cliente já cadastrado!");
+                return;
+            }
 
             listaClientes.push(novoCliente);
 

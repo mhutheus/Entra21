@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./cadastro.css">
+</head>
+
+<body>
+    <div class="cadastro2">
+        <h1>Lista de Clientes</h1>
+        <div class="tabela">
+            <div class="cards" id="cards"></div>
+        </div>
+        <br>
+        <a href="cadastroCard.html">Ir para o cadastro</a>
+        <br><br><br>
+        <a href="./menu.html">Voltar ao menu</a>
+    </div>
+
+    <script>
+        const listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        const cardContainer = document.getElementById("cards");
+
+        // Função para renderizar a lista de clientes na tela
+        function renderizarClientes() {
+            cardContainer.innerHTML = "";
+            listaClientes.forEach((cliente, index) => {
+                cardContainer.innerHTML += `
+                    <div class="card" data-index="${index}" id="card-${index}">
+                        <!-- Mudado de 'tituloh' para 'titulo' para remover o fundo branco -->
+                        <p class="titulo">Nome:</p>
+                        <h2 class="copiavel" id="nome-${index}">${cliente.nome}</h2>
+
+                        <p class="titulo">E-mail:</p>
+                        <p class="informação copiavel" id="email-${index}">${cliente.email}</p>
+
+                        <p class="titulo">Número:</p>
+                        <p class="informação copiavel" id="numero-${index}">${cliente.numero}</p>
+
+                        <button class="editar" data-index="${index}">✏️</button>
+                        <button class="deletar" data-index="${index}">✖</button>
+                    </div>
+                `;
+            });
+        }
+
+        renderizarClientes();
+
+        cardContainer.addEventListener("click", function (event) {
+            const index = event.target.dataset.index;
+            if (!index) return;
+
+            if (event.target.classList.contains("deletar")) {
+                listaClientes.splice(index, 1);
+                localStorage.setItem("clientes", JSON.stringify(listaClientes));
+                renderizarClientes();
+            }
+
+            if (event.target.classList.contains("editar")) {
+                const botao = event.target;
+                const cliente = listaClientes[index];
+
+                const h2Nome = document.getElementById(`nome-${index}`);
+                const pEmail = document.getElementById(`email-${index}`);
+                const pNumero = document.getElementById(`numero-${index}`);
+
+                if (botao.textContent === "✏️") {
+                    h2Nome.innerHTML = `<input type="text" id="input-nome-${index}" value="${cliente.nome}">`;
+                    pEmail.innerHTML = `<input type="email" id="input-email-${index}" value="${cliente.email}">`;
+                    pNumero.innerHTML = `<input type="text" id="input-numero-${index}" value="${cliente.numero}">`;
+
+                    botao.textContent = "💾";
+                }
+                else if (botao.textContent === "💾") {
+                    const novoNome = document.getElementById(`input-nome-${index}`).value.trim();
+                    const novoEmail = document.getElementById(`input-email-${index}`).value.trim();
+                    const novoNumero = document.getElementById(`input-numero-${index}`).value.trim();
+
+                    if (!novoNome || !novoEmail || !novoNumero) {
+                        return;
+                    }
+
+                    listaClientes[index] = {
+                        nome: novoNome,
+                        email: novoEmail,
+                        numero: novoNumero
+                    };
+
+                    localStorage.setItem("clientes", JSON.stringify(listaClientes));
+                    renderizarClientes();
+                }
+            }
+        });
+        cardContainer.addEventListener("click", function (event) {
+
+
+            if (event.target.classList.contains("copiavel")) {
+        
+                const textoParaCopiar = event.target.innerText;
+
+                navigator.clipboard.writeText(textoParaCopiar)
+                    .then(() => {
+
+                        const textoOriginal = event.target.innerText;
+
+                        event.target.innerText = "Copiado! ✓";
+
+                        setTimeout(() => {
+                            event.target.innerText = textoOriginal;
+                        }, 500);
+
+                    })
+                    .catch(err => {
+                        console.log("Erro ao copiar:", err);
+                    });
+            }
+
+        });
+    </script>
+</body>
+
+</html>

@@ -34,6 +34,9 @@
 
                 </tbody>
             </table>
+            <div class="botoes">
+                <button id="btnLimpar">Limpar Todos os Clientes</button>
+            </div>
 
         </div>
     </div>
@@ -61,31 +64,60 @@
                 return
             }
             let tabela = document.getElementById('tabela')
-            tabela.innerHTML += `
-        <td class="copiavel">${nome}</td>
-        <td class="copiavel">${eMail}</td>
-        <td class="copiavel">${numero}</td>
-        `
-        }
-        
-            tabela.addEventListener("click", function (event) {
-                if (event.target.tagName === "TD" && event.target.classList.contains("copiavel")) {
-                    const textoParaCopiar = event.target.innerText;
 
-                    navigator.clipboard.writeText(textoParaCopiar)
-                        .then(() => {
-                            const textoOriginal = event.target.innerText;
-                            event.target.innerText = "Copiado! ✓";
+            // Verifica se já existe cadastro igual
+            let linhas = tabela.querySelectorAll("tr")
 
-                            setTimeout(() => {
-                                event.target.innerText = textoOriginal;
-                            }, 450);
-                        })
-                        .catch(err => {
-                            alert("Erro ao copiar texto: ", err);
-                        });
+            for (let linha of linhas) {
+                let nomeExistente = linha.children[0].innerText
+                let emailExistente = linha.children[1].innerText
+                let numeroExistente = linha.children[2].innerText
+
+                if (
+                    nomeExistente === nome ||
+                    emailExistente === eMail ||
+                    numeroExistente === numero
+                ) {
+                    alert("Cliente já cadastrado!")
+                    return
                 }
-            });
+            }
+
+            // Adiciona novo cliente
+            tabela.innerHTML += `
+<tr>
+    <td class="copiavel">${nome}</td>
+    <td class="copiavel">${eMail}</td>
+    <td class="copiavel">${numero}</td>
+</tr>
+`
+        }
+        const btnLimpar = document.getElementById("btnLimpar");
+
+        btnLimpar.addEventListener("click", function () {
+            localStorage.removeItem("clientes");
+            window.location.reload();
+        }
+        );
+
+        tabela.addEventListener("click", function (event) {
+            if (event.target.tagName === "TD" && event.target.classList.contains("copiavel")) {
+                const textoParaCopiar = event.target.innerText;
+
+                navigator.clipboard.writeText(textoParaCopiar)
+                    .then(() => {
+                        const textoOriginal = event.target.innerText;
+                        event.target.innerText = "Copiado! ✓";
+
+                        setTimeout(() => {
+                            event.target.innerText = textoOriginal;
+                        }, 450);
+                    })
+                    .catch(err => {
+                        alert("Erro ao copiar texto: ", err);
+                    });
+            }
+        });
     </script>
 </body>
 
