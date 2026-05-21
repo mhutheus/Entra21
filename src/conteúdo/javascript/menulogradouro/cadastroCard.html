@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cadastro.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div class="cadastro1">
+
+        <h1>Cadastro de Clientes</h1>
+
+        <form>
+            <div class="coletar">
+                <p>Nome</p>
+                <input type="text" id="nome" name="nome" />
+                <p>E-mail</p>
+                <input type="text" id="eMail" name="eMail">
+                <p>Telefone</p>
+                <input type="text" id="numero" name="numero">
+                <p>CEP</p>
+                <input type="text" id="cep" name="cep" maxlength="9" onblur="buscarLogradouro()">
+                <div class="endereco">
+
+                    <p>Rua</p>
+                    <input type="text" id="logradouro">
+                    <p>Bairro</p>
+                    <input type="text" id="bairro">
+                    <p>Cidade</p>
+                    <input type="text" id="cidade">
+                    <p>Estado</p>
+                    <input type="text" id="estado">
+                    <p>Região</p>
+                    <input type="text" id="regiao">
+
+                </div>
+                <br><br>
+                <button type="submit">Salvar</button>
+                <p id="mensagem"></p>
+            </div>
+            <br>
+            <a href="./menu.html">Voltar ao menu</a>
+        </form>
+    </div>
+
+    <script>
+
+
+        const form = document.querySelector("form");
+
+        const nomeInput = document.getElementById("nome");
+        const emailInput = document.getElementById("eMail");
+        const numeroInput = document.getElementById("numero");
+        const cepInput = document.getElementById("cep");
+
+        const logradouroInput = document.getElementById("logradouro");
+        const bairroInput = document.getElementById("bairro");
+        const cidadeInput = document.getElementById("cidade");
+        const estadoInput = document.getElementById("estado");
+        const regiaoInput = document.getElementById("regiao");
+
+        const mensagem = document.getElementById("mensagem");
+
+        function buscarLogradouro() {
+            const cep = cepInput.value.replace(/\D/g, "");
+
+            if (cep.length !== 8) return;
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(res => res.json())
+                .then(resposta => {
+                    if (resposta.erro) {
+                        mensagem.innerText = "CEP não encontrado!";
+                        mensagem.className = "erroMensagem";
+                        return;
+                    }
+
+                    logradouroInput.value = resposta.logradouro || "";
+                    bairroInput.value = resposta.bairro || "";
+                    cidadeInput.value = resposta.localidade || "";
+                    estadoInput.value = resposta.uf || "";
+                    regiaoInput.value = resposta.regiao || "";
+                });
+        }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nome = nomeInput.value.trim();
+            const email = emailInput.value.trim();
+            const numero = numeroInput.value.trim();
+            const cep = cepInput.value.trim();
+
+            const logradouro = logradouroInput.value.trim();
+            const bairro = bairroInput.value.trim();
+            const cidade = cidadeInput.value.trim();
+            const estado = estadoInput.value.trim();
+            const regiao = regiaoInput.value.trim();
+
+            mensagem.innerText = "";
+            mensagem.className = "";
+
+            let erro = false;
+
+            if (nome.length < 3) {
+                nomeInput.classList.add("erro");
+                erro = true;
+            }
+
+            if (!email.includes("@")) {
+                emailInput.classList.add("erro");
+                erro = true;
+            }
+
+            if (numero.length < 8) {
+                numeroInput.classList.add("erro");
+                erro = true;
+            }
+
+            if (cep.length < 8) {
+                cepInput.classList.add("erro");
+                erro = true;
+            }
+
+            if (erro) {
+                mensagem.innerText = "Preencha os campos corretamente!";
+                mensagem.classList.add("erroMensagem");
+                return;
+            }
+
+            const novoCliente = {
+                nome,
+                email,
+                numero,
+                cep,
+                logradouro,
+                bairro,
+                cidade,
+                estado,
+                regiao
+            };
+
+            let listaClientes = JSON.parse(localStorage.getItem("clientes")) || [];
+
+            const clienteExistente = listaClientes.find(cliente =>
+                cliente.email === email || cliente.numero === numero
+            );
+
+            if (clienteExistente) {
+                mensagem.innerText = "Cliente já cadastrado!";
+                mensagem.classList.add("erroMensagem");
+                return;
+            }
+
+            listaClientes.push(novoCliente);
+            localStorage.setItem("clientes", JSON.stringify(listaClientes));
+
+            mensagem.innerText = "Cliente salvo com sucesso!";
+            mensagem.classList.add("sucessoMensagem");
+
+            form.reset();
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -21,13 +21,13 @@
                 <input type="text" id="eMail" name="eMail">
                 <p>Telefone</p>
                 <input type="text" id="numero" name="numero">
+                <p>CEP</p>
+                <input type="text" id="cep" name="cep">
                 <br><br>
                 <button type="submit">Salvar</button>
                 <p id="mensagem"></p>
             </div>
             <br>
-            <a href="tabela.html">Ir para a tabela</a>
-            <br><br><br>
             <a href="./menu.html">Voltar ao menu</a>
 
         </form>
@@ -37,12 +37,11 @@
     </div>
     <script>
         const form = document.querySelector('form');
-
         const nomeInput = document.getElementById('nome');
         const emailInput = document.getElementById('eMail');
         const numeroInput = document.getElementById('numero');
-
         const mensagem = document.getElementById('mensagem');
+        const cepInput = document.getElementById('cep');
 
         form.addEventListener('submit', function (event) {
 
@@ -51,10 +50,12 @@
             const nome = nomeInput.value.trim();
             const email = emailInput.value.trim();
             const numero = numeroInput.value.trim();
+            const cep = cepInput.value.trim();
 
             nomeInput.classList.remove("erro", "sucesso");
             emailInput.classList.remove("erro", "sucesso");
             numeroInput.classList.remove("erro", "sucesso");
+            cepInput.classList.remove("erro", "sucesso");
 
             mensagem.innerText = "";
             mensagem.className = "";
@@ -81,6 +82,12 @@
             } else {
                 numeroInput.classList.add("sucesso");
             }
+            if (cep.length != 9) {
+                cepInput.classList.add("erro");
+                erro = true;
+            } else {
+                cepInput.classList.add("sucesso");
+            }
 
             if (erro) {
                 mensagem.innerText = "Preencha os campos corretamente!";
@@ -88,7 +95,7 @@
                 return;
             }
 
-            const novoCliente = { nome, email, numero };
+            const novoCliente = { nome, email, numero, cep };
 
             let listaClientes =
                 JSON.parse(localStorage.getItem('clientes')) || [];
@@ -124,6 +131,7 @@
             nomeInput.classList.remove("sucesso");
             emailInput.classList.remove("sucesso");
             numeroInput.classList.remove("sucesso");
+            cepInput.classList.remove("sucesso");
         });
     </script>
 

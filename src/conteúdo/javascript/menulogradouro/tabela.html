@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela</title>
+    <link rel="stylesheet" href="./cadastro.css">
+</head>
+
+<body>
+
+    <div class="cadastro2">
+        <h1>Lista de Clientes</h1>
+        <div class="tabela">
+            <div class="cards" id="cards"></div>
+        </div>
+        <br>
+        <a href="./menu.html">Voltar ao menu</a>
+    </div>
+
+    <script>
+
+        const listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        const cardContainer = document.getElementById("cards");
+
+        function renderizarClientes() {
+
+            cardContainer.innerHTML = "";
+            listaClientes.forEach((cliente, index) => {
+                cardContainer.innerHTML += `
+
+                <div class="card" id="card-${index}">
+                    <p class="titulo">Nome:</p>
+                    <h2 class="informação copiavel" id="nome-${index}">
+                        ${cliente.nome}
+                    </h2>
+
+                    <p class="titulo">E-mail:</p>
+                    <p class="informação copiavel" id="email-${index}">
+                        ${cliente.email}
+                    </p>
+
+                    <p class="titulo">Número:</p>
+                    <p class="informação copiavel" id="numero-${index}">
+                        ${cliente.numero}
+                    </p>
+
+                    <details>
+                        <summary>Ver endereço completo</summary>
+                        <div class="logradouro">
+                            <strong>CEP:</strong>
+                            <div class="informação copiavel" id="cep-${index}">
+                                ${cliente.cep}
+                            </div>
+                        </div>
+
+                        <div class="logradouro">
+                            <strong>Rua:</strong>
+                            <div class="informação copiavel" id="logradouro-${index}">
+                                ${cliente.logradouro}
+                            </div>
+                        </div>
+
+                        <div class="logradouro">
+                            <strong>Bairro:</strong>
+                            <div class="informação copiavel" id="bairro-${index}">
+                                ${cliente.bairro}
+                            </div>
+                        </div>
+
+                        <div class="logradouro">
+                            <strong>Cidade:</strong>
+                            <div class="informação copiavel" id="cidade-${index}">
+                                ${cliente.cidade}
+                            </div>
+                        </div>
+
+                        <div class="logradouro">
+                            <strong>Estado:</strong>
+                            <div class="informação copiavel" id="estado-${index}">
+                                ${cliente.estado}
+                            </div>
+                        </div>
+
+                        <div class="logradouro">
+                            <strong>Região:</strong>
+                            <div class="informação copiavel" id="regiao-${index}">
+                                ${cliente.regiao}
+                            </div>
+                        </div>
+
+                    </details>
+
+                    <button class="editar" data-index="${index}">✏️</button>
+                    <button class="deletar" data-index="${index}">✖</button>
+
+                </div>
+
+                `;
+            });
+        }
+
+        renderizarClientes();
+
+        cardContainer.addEventListener("click", function (event) {
+            const index = event.target.dataset.index;
+            if (!index) return;
+
+            if (event.target.classList.contains("deletar")) {
+                listaClientes.splice(index, 1);
+                localStorage.setItem(
+                    "clientes",
+                    JSON.stringify(listaClientes)
+                );
+
+                renderizarClientes();
+            }
+            if (event.target.classList.contains("editar")) {
+
+                const botao = event.target;
+                const cliente = listaClientes[index];
+
+                if (botao.textContent.trim() === "✏️") {
+
+                    document.getElementById(`nome-${index}`).innerHTML =
+                        `<input type="text" id="input-nome-${index}" value="${cliente.nome}">`;
+
+                    document.getElementById(`email-${index}`).innerHTML =
+                        `<input type="email" id="input-email-${index}" value="${cliente.email}">`;
+
+                    document.getElementById(`numero-${index}`).innerHTML =
+                        `<input type="text" id="input-numero-${index}" value="${cliente.numero}">`;
+
+                    document.getElementById(`cep-${index}`).innerHTML =
+                        `<input type="text" id="input-cep-${index}" value="${cliente.cep}">`;
+
+                    document.getElementById(`logradouro-${index}`).innerHTML =
+                        `<input type="text" id="input-logradouro-${index}" value="${cliente.logradouro}">`;
+
+                    document.getElementById(`bairro-${index}`).innerHTML =
+                        `<input type="text" id="input-bairro-${index}" value="${cliente.bairro}">`;
+
+                    document.getElementById(`cidade-${index}`).innerHTML =
+                        `<input type="text" id="input-cidade-${index}" value="${cliente.cidade}">`;
+
+                    document.getElementById(`estado-${index}`).innerHTML =
+                        `<input type="text" id="input-estado-${index}" value="${cliente.estado}">`;
+
+                    document.getElementById(`regiao-${index}`).innerHTML =
+                        `<input type="text" id="input-regiao-${index}" value="${cliente.regiao}">`;
+
+                    botao.textContent = "💾";
+                }
+                else {
+
+                    listaClientes[index] = {
+
+                        nome: document.getElementById(`input-nome-${index}`).value,
+                        email: document.getElementById(`input-email-${index}`).value,
+                        numero: document.getElementById(`input-numero-${index}`).value,
+                        cep: document.getElementById(`input-cep-${index}`).value,
+                        logradouro: document.getElementById(`input-logradouro-${index}`).value,
+                        bairro: document.getElementById(`input-bairro-${index}`).value,
+                        cidade: document.getElementById(`input-cidade-${index}`).value,
+                        estado: document.getElementById(`input-estado-${index}`).value,
+                        regiao: document.getElementById(`input-regiao-${index}`).value
+                    };
+
+                    localStorage.setItem(
+                        "clientes",
+                        JSON.stringify(listaClientes)
+                    );
+
+                    renderizarClientes();
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

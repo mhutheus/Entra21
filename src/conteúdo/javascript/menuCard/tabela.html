@@ -15,8 +15,6 @@
             <div class="cards" id="cards"></div>
         </div>
         <br>
-        <a href="cadastroCard.html">Ir para o cadastro</a>
-        <br><br><br>
         <a href="./menu.html">Voltar ao menu</a>
     </div>
 
@@ -24,20 +22,26 @@
         const listaClientes = JSON.parse(localStorage.getItem('clientes')) || [];
         const cardContainer = document.getElementById("cards");
 
-        // Função para renderizar a lista de clientes na tela
         function renderizarClientes() {
             cardContainer.innerHTML = "";
             listaClientes.forEach((cliente, index) => {
                 cardContainer.innerHTML += `
                     <div class="card" data-index="${index}" id="card-${index}">
                         <p class="titulo">Nome:</p>
-                        <h2 class="copiavel" id="nome-${index}">${cliente.nome}</h2>
+                        <h2 class="informação copiavel" id="nome-${index}">${cliente.nome}</h2>
 
                         <p class="titulo">E-mail:</p>
                         <p class="informação copiavel" id="email-${index}">${cliente.email}</p>
 
                         <p class="titulo">Número:</p>
                         <p class="informação copiavel" id="numero-${index}">${cliente.numero}</p>
+
+                        <div id="detalhes-cep-${index}">
+                            <details onclick="carregarCep('${cliente.cep}', ${index})">
+                                <summary>Ver endereço completo</summary>
+                                <div class="logradouros" id="conteudo-cep-${index}" style="display: none;"></div>
+                            </details>
+                        </div>
 
                         <button class="editar" data-index="${index}">✏️</button>
                         <button class="deletar" data-index="${index}">✖</button>
@@ -65,11 +69,16 @@
                 const h2Nome = document.getElementById(`nome-${index}`);
                 const pEmail = document.getElementById(`email-${index}`);
                 const pNumero = document.getElementById(`numero-${index}`);
+                const pCep = document.getElementById(`cep-${index}`);
 
                 if (botao.textContent === "✏️") {
                     h2Nome.innerHTML = `<input type="text" id="input-nome-${index}" value="${cliente.nome}">`;
                     pEmail.innerHTML = `<input type="email" id="input-email-${index}" value="${cliente.email}">`;
                     pNumero.innerHTML = `<input type="text" id="input-numero-${index}" value="${cliente.numero}">`;
+                    pCep.innerHTML = `<input type="text" id="input-cep-${index}" value="${cliente.cep}">`;
+
+                    const dropdownContainer = document.getElementById(`detalhes-cep-${index}`);
+                    if (dropdownContainer) dropdownContainer.innerHTML = "";
 
                     botao.textContent = "💾";
                 }
@@ -77,15 +86,17 @@
                     const novoNome = document.getElementById(`input-nome-${index}`).value.trim();
                     const novoEmail = document.getElementById(`input-email-${index}`).value.trim();
                     const novoNumero = document.getElementById(`input-numero-${index}`).value.trim();
+                    const novoCep = document.getElementById(`input-cep-${index}`).value.trim();
 
-                    if (!novoNome || !novoEmail || !novoNumero) {
+                    if (!novoNome || !novoEmail || !novoNumero || !novoCep) {
                         return;
                     }
 
                     listaClientes[index] = {
                         nome: novoNome,
                         email: novoEmail,
-                        numero: novoNumero
+                        numero: novoNumero,
+                        cep: novoCep
                     };
 
                     localStorage.setItem("clientes", JSON.stringify(listaClientes));
@@ -94,30 +105,79 @@
             }
         });
         cardContainer.addEventListener("click", function (event) {
-
-
             if (event.target.classList.contains("copiavel")) {
-        
                 const textoParaCopiar = event.target.innerText;
+
+                if (textoParaCopiar === "Copiado! ✓") return;
 
                 navigator.clipboard.writeText(textoParaCopiar)
                     .then(() => {
-
                         const textoOriginal = event.target.innerText;
-
                         event.target.innerText = "Copiado! ✓";
 
                         setTimeout(() => {
                             event.target.innerText = textoOriginal;
                         }, 500);
-
                     })
                     .catch(err => {
                         console.log("Erro ao copiar:", err);
                     });
             }
-
         });
+        async function carregarCep(cep, index) {
+            const container = document.getElementById(`conteudo-cep-${index}`);
+            if (container.dataset.carregado === "true") {
+                container.style.display = "block";
+                return;
+            }
+
+            const cepLimpo = cep.replace(/\D/g, '');
+            if (cepLimpo.length !== 8) return;
+
+            try {
+                const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+                const dados = await resposta.json();
+
+                if (!dados.erro) {
+                    container.innerHTML = `
+                <div class="logradouro">
+                    <strong>CEP:</strong>
+                    <div class="informação copiavel" id="cep-${index}">${cep}</div>
+                </div>
+
+                <div class="logradouro">
+                    <strong>Rua:</strong>
+                    <div class="informação copiavel">${dados.logradouro || 'N/A'}</div>
+                </div>
+
+                <div class="logradouro">
+                    <strong>Bairro:</strong>
+                    <div class="informação copiavel">${dados.bairro || 'N/A'}</div>
+                </div>
+
+                <div class="logradouro">
+                    <strong>Cidade:</strong>
+                    <div class="informação copiavel">${dados.localidade}</div>
+                </div>
+
+                <div class="logradouro">
+                    <strong>Estado:</strong>
+                    <div class="informação copiavel">${dados.uf}</div>
+                </div>
+
+                <div class="logradouro">
+                    <strong>Região:</strong>
+                    <div class="informação copiavel">${dados.regiao}</div>
+                </div>
+            `;
+                    container.style.display = "block";
+                    container.dataset.carregado = "true";
+                }
+
+            } catch (erro) {
+                console.error("Erro ao buscar o CEP:", erro);
+            }
+        }
     </script>
 </body>
 
