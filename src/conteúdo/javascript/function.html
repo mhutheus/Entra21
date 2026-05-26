@@ -19,6 +19,7 @@
     <span id="span"></span>
 
     <p>Espere 3 segundos</p>
+git push
 
     <p id="demo2"></p>
 
@@ -45,7 +46,11 @@
     <button onclick="carregar()">Carregar</button>
     <p id="carregar"></p>
     <br><br>
-    <input type="text" id="tarefas">
+    <input type="text" id="item">
+    <button onclick="lista()">salvar</button>
+    <div id="lista">
+
+    </div>
     <script>
         console.log('Olá Mundo!')
         function ola() {
@@ -182,6 +187,15 @@
             setTimeout(() => { document.getElementById('carregar').innerHTML = 'Pronto!' }, 2000)
         }
 
+        function lista(){
+
+            let item = document.getElementById('item')
+            let lista = document.getElementById('lista')
+            lista.innerHTML += `
+            <p>${item.value}</p>`
+            
+
+        }
     </script>
 </body>
 
