@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Trabalhando com Funções</h2>
+    <button onclick="ola()">Clique</button>
+
+    <button id="myButton">Horas:</button>
+
+    <p id="demo"></p>
+
+    <p id="para"></p>
+    <span id="span"></span>
+
+    <p>Espere 3 segundos</p>
+
+    <p id="demo2"></p>
+
+    <p id="demo3"></p>
+
+    <p id="demo4"></p>
+
+    <p id="demo5"></p>
+
+    <button onclick="clicar()">clique</button>
+
+    <p id=clicar></p>
+
+    <button onclick="passou()">Timer de 5 segundos</button>
+
+    <p id=timer></p>
+
+    <button onclick="verde()">verde</button>
+    <button onclick="azul()">azul</button>
+    <button onclick="vermelho()">vermelho</button>
+
+    <br><br>
+
+    <button onclick="carregar()">Carregar</button>
+    <p id="carregar"></p>
+    <br><br>
+    <input type="text" id="tarefas">
+    <script>
+        console.log('Olá Mundo!')
+        function ola() {
+            console.log('Olá de novo!')
+        }
+
+        function dobro(n1) {
+            let x = n1 * 2
+            console.log(x)
+        }
+
+        function dividir(n1, n2) {
+            var x = n1 / n2
+            console.log(x)
+        }
+
+        dobro(10)
+        dividir(100, 2)
+        function subtrair(n1, n2) {
+            var x = n1 - n2
+            return x
+        }
+
+        let retornoX = subtrair(100, 10)
+        console.log(retornoX)
+
+        const gravar = function (nome) {
+            console.log(`Salvando: ${nome}`)
+        }
+
+        gravar('Ana da Silva')
+
+        const nomeCompleto = function (nome, sobreNome) {
+            console.log(`${nome} ${sobreNome}`)
+        }
+        nomeCompleto('Ana', 'da Silva')
+
+        const media = (n1, n2) => {
+            let soma = n1 + n2
+            console.log(soma / 2)
+        }
+        media(20, 30)
+
+        // Callback functions
+
+        function displayDate() {
+
+            const agora = new Date()
+
+            const dataEmPortugues = agora.toLocaleDateString('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            })
+            document.getElementById("demo").innerHTML = dataEmPortugues;
+        }
+
+        document.getElementById("myButton").addEventListener("click", displayDate);
+
+        function mostrarEmParagrafo(n) {
+            document.getElementById('para').innerHTML = n
+        }
+        function mostrarEmSpan(n) {
+            document.getElementById('span').innerHTML = n
+        }
+        function calcular(n1, n2, exibirResultado) {
+            let x = n1 + n2
+            exibirResultado(x)
+        }
+
+        calcular(10, 20, mostrarEmParagrafo)
+        calcular(20, 30, mostrarEmSpan)
+
+        setTimeout(myFunction, 3000)
+
+        function myFunction() {
+            document.getElementById("demo2").innerHTML = "Você é mediano"
+        }
+
+        const numbers = [45, 4, 9, 16, 25]
+
+        let txt = ""
+        let txt2 = ""
+        numbers.forEach(myFunction2)
+        numbers.forEach(myFunction3)
+        document.getElementById("demo3").innerHTML = txt
+        document.getElementById("demo4").innerHTML = txt2
+
+        function myFunction2(value) {
+            txt += value + "<br>"
+        }
+
+        function myFunction3(value) {
+            let x = value * 2
+            txt2 += x + "<br>"
+        }
+        function calcular(n1, n2) {
+            let soma = n1 + n2
+            return soma
+        }
+        function display(soma) {
+            document.getElementById('demo5').innerHTML = soma
+        }
+        let calculo = calcular(10, 50)
+        display(calculo)
+
+        //desafios
+
+        function clicar() {
+            document.getElementById('clicar').innerHTML = 'Clicado com sucesso'
+        }
+
+        function passou() {
+            setTimeout(() => { document.getElementById('timer').innerHTML = 'Passou!' }, 5000)
+        }
+
+        function verde() {
+            document.body.style.backgroundColor = "green"
+        }
+
+        function azul() {
+            document.body.style.backgroundColor = "blue"
+        }
+
+        function vermelho() {
+            document.body.style.backgroundColor = "red"
+        }
+        function carregar() {
+            document.getElementById('carregar').innerHTML = 'Carregando...'
+            setTimeout(() => { document.getElementById('carregar').innerHTML = 'Pronto!' }, 2000)
+        }
+
+    </script>
+</body>
+
+</html>
