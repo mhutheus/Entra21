@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Funções JavaScript</title>
 </head>
 
 <body>
+
     <h2>Trabalhando com Funções</h2>
+
     <button onclick="ola()">Clique</button>
 
     <button id="myButton">Horas:</button>
@@ -28,53 +30,71 @@
 
     <p id="demo5"></p>
 
-    <button onclick="clicar()">clique</button>
+    <p id="demo6"></p>
 
-    <p id=clicar></p>
+    <button onclick="clicar()">Clique</button>
+
+    <p id="clicarTexto"></p>
 
     <button onclick="passou()">Timer de 5 segundos</button>
 
-    <p id=timer></p>
+    <p id="timer"></p>
 
-    <button onclick="verde()">verde</button>
-    <button onclick="azul()">azul</button>
-    <button onclick="vermelho()">vermelho</button>
+    <button onclick="mudarCor('green')">Verde</button>
+    <button onclick="mudarCor('blue')">Azul</button>
+    <button onclick="mudarCor('red')">Vermelho</button>
 
     <br><br>
 
     <button onclick="carregar()">Carregar</button>
-    <p id="carregar"></p>
-    <br><br>
-    <input type="text" id="item">
-    <button onclick="lista()">salvar</button>
-    <div id="lista">
 
-    </div>
+    <p id="carregarTexto"></p>
+
+    <br><br>
+
+    <input type="text" id="item">
+
+    <button onclick="lista()">Salvar</button>
+
+    <div id="lista"></div>
+
     <script>
+
+        // =====================================
+        // FUNÇÕES SIMPLES
+        // =====================================
+
         console.log('Olá Mundo!')
+
         function ola() {
             console.log('Olá de novo!')
         }
 
         function dobro(n1) {
-            let x = n1 * 2
-            console.log(x)
+            let resultado = n1 * 2
+            console.log(resultado)
         }
 
         function dividir(n1, n2) {
-            var x = n1 / n2
-            console.log(x)
+            let resultado = n1 / n2
+            console.log(resultado)
+        }
+
+        function subtrair(n1, n2) {
+            return n1 - n2
         }
 
         dobro(10)
         dividir(100, 2)
-        function subtrair(n1, n2) {
-            var x = n1 - n2
-            return x
-        }
 
-        let retornoX = subtrair(100, 10)
-        console.log(retornoX)
+        let retorno = subtrair(100, 10)
+
+        console.log(retorno)
+
+
+        // =====================================
+        // FUNÇÕES ANÔNIMAS
+        // =====================================
 
         const gravar = function (nome) {
             console.log(`Salvando: ${nome}`)
@@ -82,120 +102,220 @@
 
         gravar('Ana da Silva')
 
-        const nomeCompleto = function (nome, sobreNome) {
-            console.log(`${nome} ${sobreNome}`)
+        const nomeCompleto = function (nome, sobrenome) {
+            console.log(`${nome} ${sobrenome}`)
         }
+
         nomeCompleto('Ana', 'da Silva')
 
+
+        // =====================================
+        // ARROW FUNCTION
+        // =====================================
+
         const media = (n1, n2) => {
+
             let soma = n1 + n2
+
             console.log(soma / 2)
         }
+
         media(20, 30)
 
-        // Callback functions
+
+        // =====================================
+        // DATA E HORA
+        // =====================================
 
         function displayDate() {
 
             const agora = new Date()
 
             const dataEmPortugues = agora.toLocaleDateString('pt-BR', {
+
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric',
+                day: 'numeric'
+
             })
-            document.getElementById("demo").innerHTML = dataEmPortugues;
+
+            document.getElementById('demo').innerHTML =
+                dataEmPortugues
         }
 
-        document.getElementById("myButton").addEventListener("click", displayDate);
+        document
+            .getElementById('myButton')
+            .addEventListener('click', displayDate)
 
-        function mostrarEmParagrafo(n) {
-            document.getElementById('para').innerHTML = n
-        }
-        function mostrarEmSpan(n) {
-            document.getElementById('span').innerHTML = n
-        }
-        function calcular(n1, n2, exibirResultado) {
-            let x = n1 + n2
-            exibirResultado(x)
+
+        // =====================================
+        // CALLBACK
+        // =====================================
+
+        function mostrarEmParagrafo(valor) {
+
+            document.getElementById('para').innerHTML =
+                valor
         }
 
-        calcular(10, 20, mostrarEmParagrafo)
-        calcular(20, 30, mostrarEmSpan)
+        function mostrarEmSpan(valor) {
 
-        setTimeout(myFunction, 3000)
-
-        function myFunction() {
-            document.getElementById("demo2").innerHTML = "Você é mediano"
+            document.getElementById('span').innerHTML =
+                valor
         }
+
+        function calcularCallback(n1, n2, callback) {
+
+            let soma = n1 + n2
+
+            callback(soma)
+        }
+
+        calcularCallback(10, 20, mostrarEmParagrafo)
+
+        calcularCallback(20, 30, mostrarEmSpan)
+
+
+        // =====================================
+        // SETTIMEOUT
+        // =====================================
+
+        setTimeout(() => {
+
+            document.getElementById('demo2').innerHTML =
+                'Você é mediano'
+
+        }, 3000)
+
+
+        // =====================================
+        // FOREACH
+        // =====================================
 
         const numbers = [45, 4, 9, 16, 25]
 
-        let txt = ""
-        let txt2 = ""
-        numbers.forEach(myFunction2)
-        numbers.forEach(myFunction3)
-        document.getElementById("demo3").innerHTML = txt
-        document.getElementById("demo4").innerHTML = txt2
+        let txt = ''
+        let txtDobro = ''
 
-        function myFunction2(value) {
-            txt += value + "<br>"
-        }
+        numbers.forEach(function (valor) {
 
-        function myFunction3(value) {
-            let x = value * 2
-            txt2 += x + "<br>"
-        }
+            txt += valor + '<br>'
+
+        })
+
+        numbers.forEach(function (valor) {
+
+            txtDobro += (valor * 2) + '<br>'
+
+        })
+
+        document.getElementById('demo3').innerHTML = txt
+
+        document.getElementById('demo4').innerHTML = txtDobro
+
+
+        // =====================================
+        // SOMA
+        // =====================================
+
         function calcular(n1, n2) {
-            let soma = n1 + n2
-            return soma
-        }
-        function display(soma) {
-            document.getElementById('demo5').innerHTML = soma
-        }
-        let calculo = calcular(10, 50)
-        display(calculo)
 
-        //desafios
+            return n1 + n2
+        }
+
+        function display(resultado) {
+
+            document.getElementById('demo5').innerHTML =
+                resultado
+        }
+
+        let resultado = calcular(10, 50)
+
+        display(resultado)
+
+
+        // =====================================
+        // DESAFIOS
+        // =====================================
 
         function clicar() {
-            document.getElementById('clicar').innerHTML = 'Clicado com sucesso'
+
+            document.getElementById('clicarTexto').innerHTML =
+                'Clicado com sucesso'
         }
 
         function passou() {
-            setTimeout(() => { document.getElementById('timer').innerHTML = 'Passou!' }, 5000)
+
+            setTimeout(() => {
+
+                document.getElementById('timer').innerHTML =
+                    'Passou!'
+
+            }, 5000)
         }
 
-        function verde() {
-            document.body.style.backgroundColor = "green"
+
+        // =====================================
+        // CORES
+        // =====================================
+
+        function mudarCor(cor) {
+
+            document.body.style.backgroundColor = cor
         }
 
-        function azul() {
-            document.body.style.backgroundColor = "blue"
-        }
 
-        function vermelho() {
-            document.body.style.backgroundColor = "red"
-        }
+        // =====================================
+        // CARREGAR
+        // =====================================
+
         function carregar() {
-            document.getElementById('carregar').innerHTML = 'Carregando...'
-            setTimeout(() => { document.getElementById('carregar').innerHTML = 'Pronto!' }, 2000)
+
+            document.getElementById('carregarTexto').innerHTML =
+                'Carregando...'
+
+            setTimeout(() => {
+
+                document.getElementById('carregarTexto').innerHTML =
+                    'Pronto!'
+
+            }, 2000)
         }
 
-        function lista(){
+
+        // =====================================
+        // LISTA
+        // =====================================
+
+        function lista() {
 
             let item = document.getElementById('item')
-            let lista = document.getElementById('lista')
-            lista.innerHTML += `
-            <p>${item.value}</p>`
-            
 
+            let lista = document.getElementById('lista')
+
+            lista.innerHTML += `
+                <p>${item.value}</p>
+            `
         }
+        // =====================================
+        // RELOGIO
+        // =====================================
+        setInterval(myFunction, 1000);
+
+        function myFunction() {
+            let d = new Date();
+            document.getElementById("demo6").innerHTML =
+                d.getHours() + ":" +
+                d.getMinutes() + ":" +
+                d.getSeconds();
+        }
+
     </script>
+
 </body>
 
 </html>
