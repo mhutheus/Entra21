@@ -1,0 +1,104 @@
+use test42;
+
+CREATE TABLE tb_produtos (
+id_produto INT PRIMARY KEY auto_increment,
+nome VARCHAR(100),
+preco DECIMAL(10,2),
+estoque INT
+);
+
+CREATE TABLE tb_pedidos (
+id_pedido INT primary key auto_increment,
+data_pedido DATE,
+nome_cliente VARCHAR(100)
+);
+
+CREATE TABLE tb_itensPedidos(
+id_item INT primary key auto_increment,
+id_pedido INT,
+id_produto INT,
+quantidade INT,
+valor_unitario DECIMAL(10,2),
+
+FOREIGN KEY (id_pedido) REFERENCES tb_pedidos(id_pedido),
+FOREIGN KEY (id_produto) REFERENCES tb_produtos(id_produto)
+);
+
+insert into tb_produtos (nome, preco, estoque)
+values
+('Arroz', 25.00, 56),
+('Feijão', 8.50, 34),
+('Macarrão', 6.00, 27),
+('Refrigerante', 9.90, 67),
+('Chocolate', 4.50, 89);
+
+insert into tb_pedidos (data_pedido, nome_cliente)
+values
+('2026-06-02', 'Matheus Novaski'),
+('2026-06-06', 'Davi Rosa'),
+('2026-06-10', 'Antonio Ayrton');
+
+insert into tb_itensPedidos (id_pedido, id_produto, quantidade, valor_unitario)
+values
+(1, 2, 6, 8.50),
+(1, 3, 7, 6.00),
+(1, 5, 5, 4.50),
+(2, 1, 9, 25),
+(2, 4, 8, 9.9),
+(3, 1, 4, 25),
+(3, 2, 3, 8.5),
+(3, 3, 8, 6);
+
+select * from tb_produtos;
+
+select * from tb_produtos
+where estoque > 40;
+
+select * from tb_produtos
+order by preco ASC;
+
+select * from tb_pedidos
+where id_pedido = 2;
+
+select ip.id_pedido, quantidade, nome, valor_unitario, nome_cliente, data_pedido
+from tb_itensPedidos ip
+join tb_pedidos p on ip.id_pedido = p.id_pedido
+join tb_produtos pr on ip.id_produto = pr.id_produto
+where p.id_pedido = 3;
+
+update tb_produtos
+set preco = 20.00
+where id_produto = 1;
+
+update tb_produtos
+set estoque = 20
+where id_produto = 3;
+
+update tb_produtos
+set nome = 'Feilão'
+where id_produto = 2;
+
+update tb_produtos
+set nome = 'Feijão'
+where id_produto = 2;
+
+update tb_pedidos
+set nome_cliente = 'Matheus Novaski de Souza'
+where id_pedido = 1;
+
+select 
+ip.id_pedido,
+p.nome_cliente,
+p.data_pedido,
+pr.nome as produto,
+ip.quantidade,
+ip.valor_unitario,
+(ip.quantidade * ip.valor_unitario) as subtotal,
+SUM(ip.quantidade * ip.valor_unitario) OVER (PARTITION BY ip.id_pedido) AS total
+from tb_itensPedidos ip
+inner join tb_pedidos p on ip.id_pedido = p.id_pedido
+inner join tb_produtos pr on ip.id_produto = pr.id_produto
+where ip.id_pedido = 1;
+
+
+show tables;
