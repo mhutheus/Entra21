@@ -1,0 +1,154 @@
+use test42;
+
+-- CRIANDO TABELA BASE
+
+CREATE TABLE tb_testes(
+id_tb_teste INT PRIMARY KEY auto_increment,
+numeros INT,
+palavras VARCHAR(100)
+);
+
+insert into tb_testes(numeros, palavras)
+values
+(100, 'banana'),
+(200, 'carro'),
+(300, 'celular');
+
+-- BUSCANDO DADOS
+
+DELIMITER $$
+CREATE PROCEDURE listarDados()
+BEGIN
+
+	SELECT * FROM tb_testes;
+
+END $$
+
+DELIMITER ;
+
+CALL listarDados();
+
+-- INSERINDO DADOS
+
+DELIMITER $$
+CREATE PROCEDURE adicionarDados(
+IN p_numero INT,
+IN p_palavra VARCHAR(100)
+)
+BEGIN
+
+	insert into tb_testes(numeros, palavras)
+	Value (p_numero, p_palavra);
+
+END $$
+
+DELIMITER ;
+
+CALL adicionarDados(400, 'garrafa');
+
+-- CONTAR LINHAS
+
+DELIMITER $$
+CREATE PROCEDURE totalNumeros(
+OUT quantidade INT
+)
+BEGIN
+
+	SELECT COUNT(*) INTO quantidade 
+	FROM tb_testes;
+
+END $$
+
+DELIMITER ;
+
+CALL totalNumeros(@total);
+
+SELECT (@total);
+
+-- IF ELSE
+
+DELIMITER $$
+CREATE PROCEDURE testeIf(
+IN numero INT
+)
+BEGIN
+
+	IF numero > 500 THEN
+		SELECT CONCAT(numero, ' é maior que 500') as 'resultado';
+	ELSEIF numero = 500 THEN
+		SELECT CONCAT(numero, ' é igual a 500') as 'resultado';
+	ELSE
+		SELECT CONCAT( numero, ' é menor que 500') as 'resultado';
+	END IF;
+
+END $$
+
+DELIMITER ;
+
+CALL testeIf(600);
+CALL testeIf(500);
+CALL testeIf(-100);
+
+-- LOOP WHILE
+
+DELIMITER $$
+CREATE PROCEDURE contar()
+BEGIN
+
+	DECLARE i INT DEFAULT 1;
+    
+    WHILE i <= 5 DO
+    SELECT i;
+    
+    SET i = i + 1;
+    
+    END WHILE;
+    
+END $$
+
+DELIMITER ;
+
+CALL contar();
+
+-- EXEMPLO ESTOQUE
+
+CREATE TABLE tb_estoque(
+id_tb_estoque INT PRIMARY KEY auto_increment,
+produto VARCHAR(100),
+quantidade INT
+)
+
+DELIMITER $$
+
+CREATE PROCEDURE adicionarNumero(
+	IN p_numero INT,
+    IN p_palavra VARCHAR(100)
+)
+BEGIN
+    DECLARE nAtual INT;
+
+    SELECT numeros
+    INTO nAtual
+    FROM tb_testes
+    WHERE palavras = p_palavra;
+
+    IF nAtual IS NULL THEN
+
+        INSERT INTO tb_testes(numeros, palavras)
+        VALUES (p_numero, p_palavra);
+
+    ELSE
+
+        UPDATE tb_testes
+        SET numeros = numeros + p_numero
+        WHERE palavras = p_palavra;
+
+    END IF;
+
+END $$
+
+DELIMITER ;
+
+CALL adicionarNumero(20, 'celular');
+
+select * from tb_testes;
