@@ -1,0 +1,59 @@
+use test42;
+
+CREATE TABLE pessoas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    idade INT
+);
+
+CREATE TABLE gostos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pessoa_id INT,
+    jogoFavorito VARCHAR(100),
+    comidaFavorita VARCHAR(100),
+
+    FOREIGN KEY (pessoa_id) REFERENCES pessoas(id)
+);
+
+INSERT INTO pessoas (nome, idade)
+VALUES
+('Jose', 18),
+('Ana', 20);
+
+INSERT INTO gostos (pessoa_id, jogoFavorito, comidaFavorita)
+VALUES
+(1, 'Hollow Knight', 'Sushi'),
+(2, 'Minecraft', 'Pizza');
+
+INSERT INTO gostos (jogoFavorito, comidaFavorita)
+value ('Fortnite', 'Hamburguer');
+
+select * from pessoas;
+
+select * from gostos;
+
+SELECT *
+FROM gostos g
+JOIN pessoas p
+ON g.pessoa_id = p.id;
+
+SELECT
+    g.id,
+    p.nome AS NOME,
+    p.idade AS IDADE,
+    g.jogoFavorito AS JOGO_FAVORITO,
+    g.comidaFavorita AS COMIDA_FAVORITA
+FROM gostos g, pessoas p
+WHERE g.pessoa_id = p.id;
+
+SELECT
+    g.id,
+    p.nome AS NOME,
+    p.idade AS IDADE,
+    g.jogoFavorito AS JOGO_FAVORITO,
+    g.comidaFavorita AS COMIDA_FAVORITA
+FROM gostos g, pessoas p
+WHERE g.pessoa_id = p.id
+AND g.id = 1;
+
+show tables;
