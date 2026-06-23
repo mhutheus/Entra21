@@ -4,13 +4,13 @@ CREATE USER 'vendedor'@'localhost'
 IDENTIFIED BY '123'; 
 
 GRANT SELECT, INSERT, UPDATE 
-ON loja.* 
+ON loja_42.* 
 TO 'vendedor'@'localhost'; 
 
 SHOW GRANTS FOR 'vendedor'@'localhost'; 
 
 REVOKE UPDATE 
-ON loja.* 
+ON loja_42.* 
 FROM 'vendedor'@'localhost'; 
 
 SHOW GRANTS FOR 'vendedor'@'localhost'; 
