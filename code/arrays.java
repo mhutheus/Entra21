@@ -1,7 +1,7 @@
-package src;
+package code;
 
-import java.util.Scanner;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class arrays {
 	public static void main(String[] args) {
@@ -22,6 +22,7 @@ public class arrays {
 
 	}
 
+        @SuppressWarnings("unused")
 	static void exemplos() {
 		String[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
 		System.out.println(cars[0]);
@@ -72,6 +73,7 @@ public class arrays {
 
 	}
 
+        @SuppressWarnings("unused")
 	static void exercicio1r() {
 		int[] numeros = new int[5];
 		try (Scanner entradaUser = new Scanner(System.in)) {
