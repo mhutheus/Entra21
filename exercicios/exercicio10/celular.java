@@ -1,6 +1,6 @@
 package exercicios.exercicio10;
 
-public class celular {
+public class Celular {
     private String modelo;
     private int bateria;
 
@@ -15,9 +15,14 @@ public class celular {
     public void usar(int percentual){
         if(percentual <= this.bateria){
         this.bateria -= percentual;
+        System.out.println("Bateria atual: " + bateria);
+        }
+        else{
+            this.bateria = 0;
+            System.out.println("Bateria acabou antes de terminar de usar.");
         }
     }
     public void mostrarBateria(){
-
+        System.out.println("Bateria do seu celular modelo " + modelo + " está em " + bateria + "%");
     }
 }
