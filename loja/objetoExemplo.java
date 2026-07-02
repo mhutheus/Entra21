@@ -3,7 +3,7 @@ public class objetoExemplo {
 
     public static void main(String[] args) {
 
-        produto p = new produto();
+        Produto2 p = new Produto2();
         p.descricao = "milho";
         p.preco = 100;
         p.estoque = 25;

@@ -1,7 +1,7 @@
 package loja;
 
 
-public class Produto {
+public class Produto2 {
 
     String descricao;
     double preco;
