@@ -8,7 +8,7 @@ public class Aluno extends Pessoa {
         return media;
     }
 
-    public void setMedia(double media) {
+    public final void setMedia(double media) {
         this.media = media;
     }
 
@@ -29,6 +29,11 @@ public class Aluno extends Pessoa {
         super.display();
         System.out.println("Media: " + media);
         System.out.println(getStatus());
+    }
+
+    public Aluno(String nome, String email, double media) {
+    super(nome, email);
+    setMedia(media);
     }
 }
 

@@ -4,11 +4,20 @@ public class Pessoa {
     private String nome;
     private String email;
 
+    public Pessoa(){
+
+    }
+
+    public Pessoa(String nome, String email){
+        setNome(nome);
+        setEmail(email);
+    }
+
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public final void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -16,7 +25,7 @@ public class Pessoa {
         return email;
     }
 
-    public void setEmail(String email) {
+    public final void setEmail(String email) {
         this.email = email;
     }
 

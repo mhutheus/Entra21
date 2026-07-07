@@ -8,7 +8,7 @@ public class Cliente extends Pessoa{
         return cartao;
     }
 
-    public void setCartao(String cartao) {
+    public final void setCartao(String cartao) {
         this.cartao = cartao;
     }
 
@@ -16,7 +16,7 @@ public class Cliente extends Pessoa{
         return limite < 3000 ? "Baixo ": "Alto ";
     }
 
-    public void setLimite(double limite) {
+    public  final void setLimite(double limite) {
         this.limite = limite;
     }
 
@@ -26,6 +26,12 @@ public class Cliente extends Pessoa{
         System.out.println("Cartao: " + cartao);
         System.out.println("Limite: " + limite);
         System.out.println(getLimite());
+    }
+
+    public Cliente(String nome, String email, String cartao, double limite) {
+    super(nome, email);
+    setCartao(cartao);
+    setLimite(limite);
     }
 
 }
