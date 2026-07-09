@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CadastroProdutos {
-    private static List<Produto> lista = new ArrayList<>();
-    private static Scanner sc = new Scanner(System.in);
+    private final static List<Produto> lista = new ArrayList<>();
+    private final static Scanner sc = new Scanner(System.in);
     private static int geradorId = 1;
 
     public static void main(String[] args) {
