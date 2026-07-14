@@ -1,22 +1,66 @@
+
+import java.util.Scanner;
 import dao.ProdutoDao;
 import modelos.Produto;
 
 public class Main {
-public static void main(String[] args) {
-    Produto p1 = new Produto("Maca", 5.85);
 
-    ProdutoDao dao = new ProdutoDao();
-    //Produto retorno = dao.salvar(p1);
-     //System.out.println(retorno.getId() + " - " + retorno.getDescricao());
- 
-     //dao.deletar(1);
-    // List<Produto> lista = dao.consultar();
-    // for (Produto p : lista){
-    //    System.out.println(p.getId() + " " + p.getDescricao() + " " + p.getPreco());
-     //}
-     
-     Produto p = dao.consultar(3);
-     System.out.println(p.getId() + " " + p.getDescricao() + " " + p.getPreco());
+    private static int geradorId = 1;
+    private final static Scanner sc = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        int opcao;
+        do {
+            System.out.println("1.Salvar 2.Deletar 3.Alterar 4.Consultar um 5.Consutar todos 0.Cancelar");
+            opcao = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcao) {
+                case 1 ->
+                    salvar();
+                case 2 ->
+                    deletar();
+                case 3 ->
+                    alterar();
+                case 4 ->
+                    consultar1();
+                case 5 ->
+                    consultarT();
+
+            }
+        } while (opcao != 0);
+    }
+
+    private static void salvar() {
+        try {
+            System.out.println("Digite a descrição do produto: ");
+            String descricao = sc.nextLine();
+
+            System.out.println("Digite o preço do produto: ");
+            Double preco = sc.nextDouble();
+
+            Produto produto = new Produto();
+            produto.setDescricao(descricao);
+            produto.setPreco(preco);
+
+            ProdutoDao dao = new ProdutoDao();
+
+            Produto salvo = dao.salvar(produto);
+
+            if (salvo != null) {
+                System.out.println("Produto cadastrado com sucesso!");
+                System.out.println("ID gerado: " + salvo.getId());
+            } else {
+                System.out.println("Não foi possível cadastrar.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro no cadastro: " + e.getMessage());
+            geradorId--;
+        }
+    }
+
+    private static void deletar() {
+        
     }
 }
