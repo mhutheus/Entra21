@@ -1,11 +1,9 @@
 
-import java.util.Scanner;
 import dao.ProdutoDao;
+import java.util.Scanner;
 import modelos.Produto;
 
 public class Main {
-
-    private static int geradorId = 1;
     private final static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -55,12 +53,35 @@ public class Main {
             }
 
         } catch (Exception e) {
-            System.out.println("Erro no cadastro: " + e.getMessage());
-            geradorId--;
+            System.out.println("Erro para salvar: " + e.getMessage());
         }
     }
 
     private static void deletar() {
-        
+        try {
+            System.out.println("Digite o id do produto para deletar: ");
+            int id = sc.nextInt();
+
+            ProdutoDao dao = new ProdutoDao();
+
+            dao.deletar(id);
+
+            System.out.println("Produto deletado com sucesso");
+
+        } catch (Exception e) {
+            System.out.println("Erro para deletar: " + e.getMessage());
+        }
+    }
+    
+    private static void alterar() {
+
+    }
+
+    private static void consultar1() {
+
+    }
+
+    private static void consultarT() {
+
     }
 }
