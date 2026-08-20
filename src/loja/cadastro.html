@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="consulta.html">Consulta</a>
+    </nav>
+
+    <main>
+        <h1>Cadastro de Produto</h1>
+
+        <label>Descrição</label>
+        <input type="text" id="descricao">
+
+        <label>Preço</label>
+        <input type="number" id="preco" step="0.01">
+
+        <label>Estoque</label>
+        <input type="number" id="estoque">
+
+        <button onclick="gravar()">Gravar</button>
+    </main>
+
+    <script>
+        function gravar() {
+            var produto = {
+                descricao: document.getElementById('descricao').value,
+                preco: Number(document.getElementById('preco').value),
+                estoque: Number(document.getElementById('estoque').value)
+            };
+
+            fetch('http://localhost:8080/produtos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(produto)
+            })
+            .then(resp => {
+                if (!resp.ok) {
+                    throw new Error('Erro ao cadastrar produto');
+                }
+
+                return resp.json();
+            })
+            .then(dados => {
+                alert('Produto cadastrado com sucesso!');
+                console.log(dados);
+
+                document.getElementById('descricao').value = '';
+                document.getElementById('preco').value = '';
+                document.getElementById('estoque').value = '';
+            })
+            .catch(erro => {
+                console.error(erro);
+                alert('Erro ao cadastrar produto');
+            });
+        }
+    </script>
+</body>
+
+</html>
